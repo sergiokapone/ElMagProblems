@@ -1,0 +1,866 @@
+% !TeX program = lualatex
+% !TeX encoding = utf8
+% !TeX spellcheck = uk_UA
+% !TeX root =../EMProblems.tex
+
+%=========================================================
+\Opensolutionfile{answer}[\currfilebase/\currfilebase-Answers]
+\Writetofile{answer}{\protect\section*{\nameref*{\currfilebase}}}
+\chapter{Постійний струм}\label{\currfilebase}
+%=========================================================
+
+\section{Струми в середовищах. Закон Ома в диференціальній формі}
+
+\begin{Theory}
+  %
+  %Рекомендується ознайомитись зі статтями:
+  %
+  %\fullcite{KikoinEDS}.
+  %
+  %\fullcite{SmorodinskyOhm}.
+  %
+  %\fullcite{MurzinOhm}.
+
+
+
+  Сила струму (потік заряду):
+	\begin{equation} 
+		I = \frac{dq}{dt}.
+	\end{equation}
+ 
+  Сила струму як потік вектора густини струму через довільну поверхню $S$:
+
+  \begin{equation} 
+	  I = \iint\limits_S\vect{j}\cdot d\vect{S}.
+  \end{equation}
+
+
+
+	Закон Ома в диференціальній формі:
+  \begin{equation} 
+	  \vect{j} = \lambda\left( \Efield + \Efield^*\right)
+  \end{equation}
+	\noindent де $\lambda$~--- електрична провідність ділянки кола,  $\Efield^*$~--- напруженість поля сторонніх сил. 
+	Електрорушійна сила:
+	\begin{equation} 
+	\EMF = \oint\limits_L \Efield^* d\vect{r},
+	\end{equation}
+
+Для випадку постійного струму, закон збереження електричного заряду приймає вигляд:
+  \begin{equation} 
+	  \divg\vect{j} = 0.
+  \end{equation}
+
+\end{Theory}
+
+%=========================================================
+\begin{problem}
+    Для струмів до $30$~А застосовуються кабелі, мідні дроти яких мають діаметр $2.6$~мм. Питомий опір міді $\rho = 1.7\cdot 10^{-8}$~Ом$\cdot$м. 
+	\begin{enumerate*}[label=\alph*)]
+		\item Визначити опір такого кабелю довжиною $100$~м. 
+		\item Яка напруженість електричного поля в дроті, якщо по ньому тече струм $30$~А?
+		\item За цих умов, скільки часу потрібно, щоб електрон пройшов відстань в $100$~м вздовж дроту?
+	\end{enumerate*}
+  Кожен атом міді дає один електрон в електричну провідність.
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{metall_into_condensator}
+    Плоский конденсатор увімкнений послідовно в коло, що складається з резистора опором R і джерела з ЕРС $\EMF$. У простір між пластинами конденсатора паралельно до них всовують з постійною швидкістю $v$ металеву пластинку товщиною $d$. Поперечні розміри всувають пластинки $l \times l$ збігаються з розмірами обкладок конденсатора, а відстань між обкладинками дорівнює $d_0$. Нехтуючи внутрішнім опором джерела, знайдіть силу струму колі.
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{dielectric_into_condensator}
+    Розв'язати попередню задачу~\ref{metall_into_condensator} за умови, що у простір між пластинами конденсатора паралельно до них всовують діелектричну пластинку товщиною $d$ з проникністю $\epsilon$.
+\end{problem}
+
+%=========================================================
+\begin{problem}
+Отримайте граничні умови для густини струму на поверхні розділу двох провідників, що мають різну електропровідність $\lambda_1$ і $\lambda_2$. Знайдіть закон заломлення ліній струму на поверхні розділу двох провідників.
+\begin{solution}
+	$j_{1n} = j_{2n}$, $\frac{j_{1\tau}}{\lambda_1} = \frac{j_{2\tau}}{\lambda_2}$,
+	$\frac{\tg{\alpha_1}}{\tg{\alpha_2}} = \frac{\lambda_1}{\lambda_2}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}
+Доведіть, що при проходженні постійного струму через неоднорідний провідник ($\lambda = \lambda(\vect{r})$), в його об'ємі може виникати вільний об'ємний  заряд. Від чого залежить знак і величина цього заряду? Чи виникатиме об'ємний заряд, якщо провідник однорідний?
+\begin{solution}
+	Для постійних струмів:
+	\begin{equation}
+		\divg\vect{j} = 0,
+	\end{equation}
+	використовуючи закон Ома в диференціальній формі:
+	\begin{equation}
+		\divg\vect{j} = \divg(\lambda\Efield) = \lambda\divg\Efield + \Efield\cdot\vect{\nabla}\lambda = 0.
+	\end{equation}
+	З теореми Гауса в диференціальній формі $\divg\Efield = 4\pi\rho$, бачимо, що густина об'ємних зарядів в провіднику дорівнює:
+	\begin{equation}
+		\rho = - \frac{\vect{j}\cdot\vect{\nabla}\lambda}{4\pi\lambda^2}.
+	\end{equation}
+
+	Якщо провідник однорідний ($\lambda = \const$), то об'ємного заряду не виникає.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}
+Доведіть, що при проходженні постійного струму по провіднику, на його поверхні виникають поверхневі заряди.
+
+{\small \emph{Вказівка}: Для доведення скористайтесь граничними умовами для векторів густини струму та електричної індукції.}
+\end{problem}
+
+%=========================================================
+\begin{problem}
+    Покажіть, що при проходженні струму густиною $\vect{j}$ через неоднорідний діелектрик ($\epsilon = \epsilon(\vect{r})$), який має слабку неоднорідну провідність ($\lambda = \lambda(\vect{r})$), в його об'ємі утворюється заряд, густина якого дорівнює:
+	\[
+		\rho = - \frac{1}{4\pi}\frac{\epsilon^2}{\lambda^2}\left( \vect{j}\cdot\vect{\nabla}\frac{\lambda}{\epsilon}\right) .
+	\]
+\end{problem}
+
+
+%=========================================================
+\begin{problem}
+На плоский конденсатор ємністю $C$ подано постійну напругу $V$. Знайти струм втрат через конденсатор, якщо питомий опір однорідної речовини, якою заповнений зазор між обкладками конденсатора, дорівнює $\rho$, а діелектрична проникність $\epsilon$.
+\begin{solution}
+	$ I = \frac{4\pi VC}{\rho \epsilon} $
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}% КРС 4.25
+Простір між пластинами плоского конденсатора заповнено двома однорідними шарами діелектрика, що слабко проводять. Товщини шарів діелектрика дорівнюють $d_1$ і $d_2$, діелектрична проникність і питома провідність дорівнюють $\epsilon_1$ і $\lambda_1$ та $\epsilon_2$ і $\lambda_2$, відповідно. До конденсатора прикладено постійну напруги $V$. Площа пластин конденсатора $S$. Знайти
+	\begin{enumerate*}[label=\alph*)]
+		\item густину струму в діелектрику;
+		\item поверхневу густину вільних зарядів на пластинах конденсатра;
+		\item поверхневу густину вільних зарядів на межі розділу діелектриків;
+		\item поверхневу густину зв'язаних зарядів на межі розділу діелектриків;
+		\item опір конденсатора.
+	\end{enumerate*}
+
+\begin{solution}
+	\begin{enumerate*}[label=\alph*)]
+		\item  $j = V\left( \frac{d_1}{\lambda_1} + \frac{d_2}{\lambda_2}\right)^{-1}$;
+		\item $\sigma_1  = \frac{V}{4\pi} \frac{\epsilon_1}{\lambda_1} \left( \frac{d_1}{\lambda_1} + \frac{d_2}{\lambda_2}\right)^{-1}$, $\sigma_2  = \frac{\epsilon_2\lambda_1}{\epsilon_1\lambda_2} \sigma_1$.
+		\item $\sigma = \frac{V}{4\pi} \frac{\epsilon_2\lambda_1 - \epsilon_1\lambda_2}{d_1\lambda_2 + d_2\lambda_1}$;
+		\item $\sigma' = - \frac{V}{4\pi} \frac{(\epsilon_2 - 1)\lambda_1 - (\epsilon_1 - 1)\lambda_2}{d_1\lambda_2 + d_2\lambda_1}$;
+		\item $R = \frac1S\left( \frac{d_1}{\lambda_1} + \frac{d_2}{\lambda_2}\right) $.
+	\end{enumerate*}
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem} % КРС 4.23
+Простір між пластинами шаруватого плоского конденсатора заповнено багатошаровим діелектриком, що має слабку електропровідність. Діелектрична проникність і питома провідність змінюються від $\epsilon = 4$ та $\lambda~=~10^{-9}$~Ом$^{-1}\cdot$см$^{-1}$ на одній поверхні діелектрика до $\epsilon = 3$ та $\lambda~=~10^{-12}$~Ом$^{-1}\cdot$см$^{-1}$ на інший його поверхні. Конденсатор включений в коло батареї постійної ЕРС. Визначити величину і знак сумарного вільного заряду $q$, який виникає в діелектрику, коли в колі встановиться постійний електричний струм $I = 10^{-7}$~А, що тече через діелектрик від сторони $1$ до сторони~$2$.
+\begin{solution}
+	$q  = \frac{I}{4\pi} \left( \frac{\epsilon_2}{\lambda_2} - \frac{\epsilon_1}{\lambda_1}\right) $.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}
+Плоский конденсатор, заповнений речовиною, діелектрична проникність якої дорівнює $\epsilon$, за час $\tau$ втрачає третину наданого йому заряду. Вважаючи, що втрата заряду відбувається тільки через діелектричну прокладку, знайти питомий опір її матеріалу.
+\begin{solution}
+	$\rho = \frac{4\pi\tau}{\epsilon\ln\frac32}$
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{Lim1044}
+Обчислити опір між обкладками циліндричного конденсатора, радіус внутрішньої обкладки якого $R_1$, а зовнішньої~-- $R_2$. Конденсатор має довжину $l \gg R_2$ і заповнений діелектриком з проникністю $\epsilon$ і електропровідністю $\lambda$. Знайдіть ємність такого конденсатора
+\begin{solution}
+	$R = \frac{\ln\left( \frac{R_2}{R_1} \right)}{2\pi l\lambda}$, $C = \frac{\epsilon}{\lambda R}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}
+Між двома концентричними сферами з ідеального провідника, знаходиться речовина з питомим опором $\rho$ і діелектричною проникністю $\epsilon$. Визначити опір такого шару, якщо його внутрішній радіус дорівнює $r_1$, а зовнішній~-- $r_2$. Розгляньте випадок $R_2 \to \infty$.
+\begin{solution}
+	$R = \frac{\epsilon\rho\left( r_2 - r_1 \right)}{4\pi r_1r_2}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{grounding}% КРС 4.33
+Показати, що опір однорідного провідного середовища, що заповнює весь простір між двома металевими оболонками довільної форми не залежить від відстані між ними\footnote{Цей результат був емпірично знайдений телеграфістами, які виявили що опір землі між телеграфними станціями не залежить від відстані між ними.} і дорівнює  $\frac{\rho}{4\pi\lambda C}$, де $\lambda$~-- питома провідність середовища, а $C$~-- взаємна ємність цієї системи в вакуумі. Запишіть дану величину в одиницях системи SI. 
+\begin{solution}
+	Згідно теореми Гауса, заряд однієї із оболонок дорівнює:
+	\[
+		Q = \frac{1}{4\pi} \oiint\limits_S \Efield d\vect{S}.
+	\]
+
+	З іншого боку, із означення ємності системи двох провідників:
+	\[
+		Q = CV,
+	\]
+	де $V$~-- різниця потенціалів між провідниками, $C$~-- їх взаємна ємність.
+
+	Звідси,
+
+	\[
+		V = \frac{1}{4\pi C} \oiint\limits_S \Efield d\vect{S}.
+	\]
+
+	Струм між цими провідниками можна знайти як:
+	\[
+		I =  \oiint\limits_S \vect{j} d\vect{S} = \lambda \oiint\limits_S \Efield d\vect{S}.
+	\]
+
+	Отже, опір середовища знаходимо з закону Ома:
+
+	\[
+		R = \frac{V}{I} = \frac{1}{4\pi\lambda C}.
+	\]
+	В системі SI остання формула матиме вигляд:
+	\[
+		R = \frac{\epsilon_0}{\lambda C}.
+	\]
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}% КРС 4.34
+Дві металеві кулі радіусами $r_1$ та $r_2$ занурені в однорідне середовище з питомим опором $\rho$. Чому дорівнює опір середовища між кулями? Визначити взаємну ємність цих куль. Вважати, що відстань між кулями набагато більша за їх радіуси.
+\begin{solution}
+	$R = \frac{\rho}{4\pi}\left( \frac{1}{r_1} + \frac{1}{r_2} \right)$, $C  = \frac{r_1r_2}{r_1 + r_2}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:shperes_current} %КРС 4.36
+Коло постійного струму складається з довгої однопровідної лінії, в яку увімкнено джерело з ЕРС $\EMF$. Лінія замикається через Землю, в яку зариті дві металеві кулі розташовані на великій відстані одна від одної (рис.~\ref{shperes_current}). Відомі радіуси куль $r_1$ та $r_2$, а також провідність ґрунту $\lambda_1$ і $\lambda_2$ в місцях, де вони закопані. Нехтуючи усіма опорами, крім опору заземлення, визначити заряд кожної кулі.
+\begin{solution}
+	$q_1 = \frac{\EMF r_2}{r_2/r_1 + \lambda_1/\lambda_2}$, $q_2 = \frac{\EMF r_1}{r_1/r_2 + \lambda_2/\lambda_1}$.
+\end{solution}
+\end{problem}
+
+
+%=========================================================
+\begin{problem}\label{prb:Kuptsov3.2}
+Фундамент металевої опори виконано із матеріалу, який добре проводить струм і має вигляд півсфери діаметром $D = 2$~м (рис.~\ref{Kuptsov3.2}). Ґрунт навколо фундаменту має провідність $\lambda = 2\cdot 10^{-4}$~См/см і є заземленням. Знайти опір заземлення і крокову напругу на відстані $r = 5$~м від центру опори при замиканні на опору дроту напругою $\phi_0 = 10$~кВ. Довжина кроку людини $\ell = 0.7$~м.
+\begin{solution}
+%---------------------------------------------------------
+\begin{center}
+    \begin{tikzpicture}[every node/.style={scale=0.8}]
+			
+			\node  [gray!50, ground, minimum width=7cm,yshift=-0.17cm] (floor1) at (-1,0) {};
+			\draw (floor1.north west) -- (floor1.north east);
+			\node  [gray!50, ground, minimum width=7cm,yshift=-0.17cm] (floor2) at (1,0) {};
+			\draw (floor2.north west) -- (floor2.north east);
+			\draw [ball color=gray!20] (180:1) arc (180:360:1) -- cycle;
+			\draw [-latex] (0,0) -- node [right] {$\nfrac{D}{2}$}(240:1);
+			% ----------------- Рисування ЛЕП -----------------
+			\draw [gray!50, thick] (-0.5,0) -- (0,  4) foreach \x in  {0,...,10}  {coordinate[pos=0.1*\x]      ({A\x})}
+			-- (0.5,0) foreach \x in  {0,...,10}  {coordinate[pos=1 - 0.1*\x]  ({B\x})};
+			\draw[gray!50] (B0) foreach \x in {1,...,10} {to (\ifodd\x A\x\else B\x\fi)}
+			(A0) foreach \x in {1,...,10} {to (\ifodd\x B\x\else A\x\fi)};
+			% ----------------- Рисування графіка -----------------
+	        \draw[-latex] (0,0) -- (0,5) node[right] {$\phi$};
+			\draw[-latex] (-4,0) -- (4,0) node[below] {$r$};
+			\draw [blue] (180:2) arc (180:360:2);
+			\draw [blue] (180:2.4) arc (180:360:2.4);
+			\draw[ultra thick, blue] (0,{3.5*exp(-0.6*1)+0.5}) -- +(1,0);
+			\draw[ultra thick, domain=1:4,smooth,variable=\x,blue, name path = curve] plot ({\x},{3.5*exp(-0.6*\x)+0.5});
+
+			\draw[ultra thick, gray!50] (0,{3.5*exp(-0.6*1)+0.5}) -- +(-1,0);
+			\draw[ultra thick, domain=-4:-1,smooth,variable=\x,gray!50] plot ({\x},{3.5*exp(0.6*\x)+0.5});
+
+			\path[name path global= line] (2.4,0) -- ++(0,4);
+			\draw[dashed, name intersections = {of = curve and line, by = A}] (2.4,0) -- (A);
+			\draw[dashed] (A) -- (A-|0,0) node[below left=-5pt] {$\phi_2$};
+
+			\path[name path global= line] (2,0) -- ++(0,4);и
+			\draw[dashed, name intersections = {of = curve and line, by = B}] (2,0) -- (B);
+			\draw[dashed] (B) -- (B-|0,0) node[above left=-5pt] {$\phi_1$};
+
+			\draw (B-|0,0) -- +(-2,0) coordinate (P1);
+			\draw (A-|0,0) -- +(-2,0) coordinate (P2);
+			\draw[latex-] ([xshift=0.2cm]P1) -- ([shift={(0.2,0.5)}]P1) node[above] {$U_\text{крокова} = \phi_1 - \phi_2$};
+			\draw[latex-] ([xshift=0.2cm]P2) -- ([shift={(0.2,-0.5)}]P2) ;
+			
+
+			\draw (2,0) -- +(0,-2);
+			\draw (2.4,0) -- +(0,-2);
+			\draw[latex-latex] (2,-1.9) -- node[below] {$\ell$} (2.4, -1.9);
+			% ----------------- Рисування людини -----------------
+			\coordinate (M) at (2.2,0.25);
+			\draw[red, thick] (2,0) -- (M) (2.4,0) -- (M);
+			\draw[red, thick] (M) -- ([yshift=0.3cm]M) coordinate (HEAD);
+			\draw[red, thick] ([yshift=0.1cm]HEAD) circle (0.1);
+			\draw[red, thick] (HEAD) -- +(-45:0.3);
+			\draw[red, thick] (HEAD) -- +(-135:0.3);
+    \end{tikzpicture}
+\end{center}
+%---------------------------------------------------------
+Опір заземлення $R = \frac{1}{\pi\lambda D} \approx 8$~Ом.
+
+Потенціал заземленої кулі спадає обернено пропорційно відстані:
+\[
+	\phi = \frac{\phi_0 D}{2}\frac{1}{r},
+\]
+а крокова напруга визначається за формулою (див. рис.) $U_\text{крокова} = \phi_1 - \phi_2$, тобто
+\[
+	U_\text{крокова} = \frac{\phi_0D}{2}\frac{\ell}{r^2} \approx 246\, \text{В},
+\]
+де було враховано, що $r = \frac{r + (r + \ell)}{2}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{figure}[h!]\centering
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\node  [ground, minimum width=1cm,yshift=-0.15cm] (floor1) at (0,0) {};
+			\draw (floor1.north west) -- (floor1.north east);
+			\node  [ground, minimum width=1.75cm,yshift=-0.15cm] (floor2) at (5,0) {};
+			\draw (floor2.north west) -- (floor2.north east);
+			\draw [ball color=gray!20] (0,-2) circle (0.5) coordinate (C1);
+			\draw  [-latex'] (C1) node[above] {$r_1$}  --   +(45:0.5) ;
+			\draw [ball color=gray!20] (5,-2) circle (1) coordinate (C2);
+			\draw  [-latex'] (C2)  --  node[above left] {$r_2$}  +(45:1) ;
+			\draw (0,-1.5) -- (0,1) to [battery={info'={$\EMF$}}] (5,1) -- (5,-1);
+			\node at ([xshift=0.8cm]C1) {$\lambda_1$};
+			\node at ([xshift=1.3cm]C2) {$\lambda_2$};
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:shperes_current}}
+		\label{shperes_current}
+	\end{minipage}
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\node  [ground, minimum width=2cm,yshift=-0.17cm] (floor1) at (-1,0) {};
+			\draw (floor1.north west) -- (floor1.north east);
+			\node  [ground, minimum width=2cm,yshift=-0.17cm] (floor2) at (1,0) {};
+			\draw (floor2.north west) -- (floor2.north east);
+			\draw [ball color=gray!20] (180:1) arc (180:360:1) -- cycle;
+			\draw [-latex] (0,0) -- node [right] {$\nfrac{D}{2}$}(240:1);
+			% ----------------- Рисування ЛЕП -----------------
+			\draw [thick] (-0.5,0) -- (0,  4) foreach \x in  {0,...,10}  {coordinate[pos=0.1*\x]      ({A\x})}
+			-- (0.5,0) foreach \x in  {0,...,10}  {coordinate[pos=1 - 0.1*\x]  ({B\x})};
+			\draw (B0) foreach \x in {1,...,10} {to (\ifodd\x A\x\else B\x\fi)}
+			(A0) foreach \x in {1,...,10} {to (\ifodd\x B\x\else A\x\fi)};
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:Kuptsov3.2}}
+		\label{Kuptsov3.2}
+	\end{minipage}
+	%---------------------------------------------------------
+\end{figure}
+%=========================================================
+
+%=========================================================
+\begin{problem}\label{sphere:current_in_media}
+В нескінченному середовищі з провідністю $\lambda_e$, знаходиться сферична краплина радіусом $R$, провідність якої $\lambda_i$. На далекій відстані від краплини тече струм густиною $\vect{j}_0$. Знайти дипольний момент краплини, результуючий розподіл струму в середовищі та розподіл зарядів на поверхні краплини.
+\begin{solution}
+	$\vect{p} = \frac{\lambda_i - \lambda_e}{\lambda_i + 2\lambda_e}R^3\Efield_0,$
+
+	$\vect{j} =
+		\begin{cases}
+			\frac{3\lambda_e}{\lambda_i + 2\lambda_e} \vect{j}_0,                                                                                                    & r \le R \\
+			\vect{j}_0  + \frac{\lambda_i - \lambda_e}{\lambda_i + 2\lambda_e} \left( \frac{3R^3}{r^5}(\vect{j}_0\cdot\vect{r}) - \frac{R^3}{r^3}\vect{j}_0\right) , & r > R,
+		\end{cases}
+	$, де $r$~-- відстань від центру порожнини, $\sigma = \frac{3}{4\pi} \frac{\lambda_i - \lambda_e}{\lambda_i + 2\lambda_e} \frac{\Efield_0\vect{r}}{R}.$
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}% Черкасский Р.22
+В нескінченному середовищі з провідністю $\lambda$, по якому йшов струм $\vect{j}_0$, виникла сферична порожнина радіусом $R$. Знайти результуючий розподіл струму в середовищі.
+\begin{solution}
+	Задача аналогічна до \ref{sphere:current_in_media}, де треба покласти $\lambda_i = 0$.
+	%	
+	%	$\vect{j} = 
+	%	\begin{cases}
+	%		\vect{j}_0\left( 1 + \frac{R^3}{2r^3}\right)  - \frac{3R^3(\vect{j}_0\cdot\vect{R})\vect{R}}{2r^5}, & \quad r>R, \\
+	%		0, & \quad r<R  
+	%	\end{cases}
+	%	$, де $r$~-- відстань від центру порожнини.
+\end{solution}
+\end{problem}
+
+
+\section{Електричні кола. Правила Кірхгофа}
+
+\begin{Theory}
+Закон Ома для однорідної ділянки кола в інтегральній формі \footnote{При використанні формул на закони Ома в інтегральній формі, зручно користуватись системою одиниць $\mathrm{SI}$}:
+	\begin{equation}
+		I = \frac{U}{R}		
+	\end{equation}
+
+Закон Ома для ділянки кола в інтегральній формі:
+	\begin{equation}
+		\phi_1 - \phi_2 - \EMF = - I R		
+	\end{equation}
+
+Величина, $V = \phi_1 - \phi_2$~-- називається різницею потенціалів (або падінням напруги) на ділянці кола, величина $U = \phi_1 - \phi_2 - \EMF$ називається напругою (робота як сторонніх сил, так і сил електричного поля по переміщенню одиничного додатного заряду).
+
+\begin{center}
+	\begin{tikzpicture}
+		\draw [-latex] (0.5,1) -- node[above] {\textit{Напрям обходу}}(4.5,1);
+		\draw (0,0) node[contact] {} node[above] {$\phi_1$} to [battery={info={$\EMF$}}] (2,0) to [resistor={info={$R$}}] (3,0) to (5,0)  node[contact] {} node[above] {$\phi_2$};
+		\draw [-latex, opacity=0.9, thick, red] (4.5,0) -- node[black, above] {$I$} (3.5,0);
+	\end{tikzpicture}
+	\captionof{figure}{Ілюстрація до закону Ома для неоднорідної ділянки кола\label{Ohm_Law}}
+\end{center}
+
+Правила Кірхгофа застосовуються для розрахунку параметрів розгуджених електричних кіл. Розгалужені кола, це такі кола, що містять з'єднання трьох або більшої кількості провідників в одній точці, які називаються \textit{вузлами}. Замкнена частина електричного кола називається \textit{контуром}, а провідник що сполучає два вузли~--- \textit{гілкою}. По всім елементам гілки тече один і той же струм.
+
+\textit{Перше правило Кірхгофа}: алгебраїчна сума струмів у вузлі дорівнює нулю:
+\begin{equation}
+	\sum\limits_{i} I_i = 0
+\end{equation}
+Як правило, струм, який входить у вузол беруть з за додатнім знаком, а який виходить і з вузла~--- з від'ємним. Якщо коло містить $N$ вузлів, то перше правило Кірхгофа достатньо записати для $N - 1$ вузла.
+
+\textit{Друге правило Кірхгофа}: сума спадів напруг у контурі дорівнює сумі електрорушійних сил, які діють у цьому контурі:
+\begin{equation}
+	\sum\limits_{i} I_i R_i = \sum\limits_{j}\EMF_j
+\end{equation}
+Якщо коло містить $M$ гілок і $N$ вузлів, то кількість рівнянь, які треба записати за другим правилом Кірхгофа  дорівнює $M - (N - 1)$.
+\end{Theory}
+
+%=========================================================
+\begin{problem}\label{prb:battery_around}% Сивухин 213
+Три гальванічні елементи з ЕРС $\EMF_1$, $\EMF_2$, $\EMF_3$ і внутрішніми опорами $r_1$, $r_2$ і  $r_3$ з'єднані за схемою, показаною на рис.~\ref{battery_around}. Опором з'єднувальних провідників можна знехтувати. Яку напругу $U$ буде показувати вольтметр, увімкнений так, як вказано на цьому рисунку? Чому дорівнюватимуть покази вольтметра, якщо величини $\EMF_i$ та $r_i$ пов'язані співвідношеннями $\frac{\EMF_1}{r_1} = \frac{\EMF_2}{r_2} = \frac{\EMF_3}{r_3}$?
+\begin{solution}
+	$U = \frac{\EMF_1+\EMF_2+\EMF_3}{r_1 + r_2 + r_3} r_1 - \EMF_1$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:power_on_resistor}%КРС 4.6
+У схемі, зображеній на~\ref{power_on_resistor}, задані опори $R_1$ і $R_2$. Визначити опір $R$, при якому потужність, що розсіюється на ньому буде максимальною. Яка умова того, що струм, який проходить через опір $R$, дорівнюватиме нулю?
+\begin{solution}
+	$R = \frac{R_1R_2}{R_1 + R_2}$, $I = 0$ при $\frac{\EMF_1}{\EMF_2} = \frac{R_1}{R_2}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:Irodov2.181}
+Знайти різницю потенціалів $\phi_A - \phi_B$ між точками $A$ та $B$ схеми, що зображена на рис.~\ref{Irodov2.181}, якщо $R_1 = 10$~Ом, $R_2 = 20$~Ом, $\EMF_1 = 5$~В і  $\EMF_2= 2$~В. Внутрішніми опорами джерел живлення можна знехтувати.
+\begin{solution}
+	$\phi_A - \phi_B = \frac{\EMF_1 - \EMF_2}{R_1 + R_2} R_2 - \EMF_1 =-4$~В.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{figure}[h!]\centering
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.3\linewidth}\centering
+		\begin{tikzpicture}
+			\newlength{\radii}\setlength{\radii}{1.25cm}
+			\node[contact] (A) at (-60:\radii) {};
+			\node[contact] (B) at (60:\radii) {};
+			\draw  (A) arc (-60:-5:\radii);
+			\draw (-5:\radii) to [battery = {info={$\EMF_1, r_1$}}] (5:\radii);
+			\draw (5:\radii) arc (5:60:\radii);
+			\draw (B) arc (60:115:\radii);
+			\draw (115:\radii) to [battery = {info'={$\EMF_2, r_2$}}] (125:\radii);
+			\draw (125:\radii) arc (125:180:\radii);
+			\draw (180:\radii) arc (180:235:\radii);
+			\draw (235:\radii) to [battery = {info'={$\EMF_3, r_3$}}] (245:\radii);
+			\draw (245:\radii) arc (245:300:\radii);
+			\coordinate (V1) at ([xshift=1.5\radii]A);
+			\coordinate (V2) at ([xshift=1.5\radii]B);
+			\draw (A) -- (V1) (V1) to [voltmeter] (V2) (B) -- (V2);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:battery_around}}
+		\label{battery_around}
+	\end{minipage}
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.3\linewidth}\centering
+		\begin{tikzpicture}
+			\newlength{\arbshift}\setlength{\arbshift}{2cm}
+			\coordinate (left contact)  at (0,0);
+			\node [contact] (middle contact) at ([xshift=\arbshift]left contact){};
+			\coordinate (right contact) at ([xshift=\arbshift]middle contact);
+			\coordinate (upright contact) at ([yshift = \arbshift]right contact);
+			\node [contact] (upmiddle contact) at  ([xshift=-\arbshift]upright contact) {};
+			\coordinate (upleft contact) at ([xshift = -\arbshift]upmiddle contact);
+
+			\draw (right contact) to [battery={info = {$\EMF_1$}}] (middle contact) to [battery={info = {$\EMF_2$}}]  (left contact) -- (upleft contact) to [resistor={info = {$R_1$}}] (upmiddle contact) to [resistor={info = {$R_2$}}] (upright contact) -- (right contact);
+			\draw (middle contact) to [resistor={info = {$R$}}] (upmiddle contact);
+
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:power_on_resistor}}
+		\label{power_on_resistor}
+	\end{minipage}
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.3\linewidth}\centering
+		\begin{tikzpicture}
+			\draw
+			(4,0) to [resistor={info={$R_2$}}] (2,0) to [battery={info={$\EMF_2$}}] (0,0) -- (0,1) node [ocontact] {} node [left] {$A$} -- (0,2) to [resistor={info={$R_1$}}] ++(2,0) to [battery={info'={$\EMF_1$}, rotate=180}] ++(2,0) -- ++(0,-1) node [ocontact] {} node [right] {$B$} -- (4,0);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:Irodov2.181}}
+		\label{Irodov2.181}
+	\end{minipage}
+\end{figure}
+
+%=========================================================
+\begin{problem}\label{prb:Uitson}% Сивухин 200
+Точність вимірювання опорів містком Уітстона найбільша, коли опори сусідніх плечей однакові, тобто, коли $R_1 = R_2$~(рис.~\ref{Uitson}). Довести це для випадку, коли опір гальванометра дуже великий, в цьому випадку струмом через гальванометр можна знехтувати.
+\begin{solution}
+	Відносна похибка
+	\[
+		\frac{\Delta R_x}{R_x} = \frac{(R_x + R_3)(R_1 + R_2)}{R_2 R_x}\frac{\Delta V}{V}
+	\]
+	де $V$~-- напруга на містку і $\Delta V$~-- різниця потенціалів на клемах гальванометра при зміні $R_x$ на $R_x + \Delta R_x$. У стані рівноваги $R_x / R_3 = R_1 / R_2 = b$, тому множник при $\frac{\Delta V}{V}$ дорівнюватиме $(1+b)^2/b$, він має мінімум при $b = 1$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:telegraph} %Сивухин 239
+На телеграфній однопровідній лінії є пошкодження з певним опором заземлення $r$ (рис.~\ref{telegraph}) Показати, що струм $I$ на приймаючому кінці лінії буде найменшим в тому випадку, коли пошкодження сталося в середині лінії. Опір приймального апарату малий в порівнянні з опорами всієї лінії.
+\end{problem}
+
+%=========================================================
+\begin{figure}[h!]\centering
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\draw (-1,0) --
+			(0,0) node[contact] (A) {}
+			to [resistor={info={$R_1$}}] (2,2) node[contact] (B) {}
+			to [resistor={info={$R_2$}}] (4,0) node[contact] (C) {}
+			-- (5,0)
+			(A) -- +(0,-1) to [resistor={info={$R_x$}}] ++(2,-1) node[contact] (D) {} to [resistor={info={$R_3$}}] ++(2,0) -- ++(0,1)
+			(B) to [galvanometer] (D);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:Uitson}}
+		\label{Uitson}
+	\end{minipage}
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\node (floor) [ground, minimum width=6cm,yshift=-0.15cm] {};
+			\draw (floor.north west) -- (floor.north east);
+
+			\coordinate (A) at (-2.5,2);
+			\draw (A) -- +(2.5,0) node[contact] (B) {} -- ++(5,0)
+			to [galvanometer] +(0,-2)
+			([xshift=-0.05cm]A) node [ocontact] {}
+			(B) to [resistor={info={$r$}}] +(0,-2)
+			;
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:telegraph}}
+		\label{telegraph}
+	\end{minipage}
+	%---------------------------------------------------------
+\end{figure}
+
+%=========================================================
+\begin{problem}\label{prb:inftycircuit}
+Знайти опір між точками $A$ та $B$ нескінченного кола (рис.~\ref{inftycircuit}).
+\begin{solution}
+	$R_{AB} = 2R (1 + \sqrt{3})$.
+\end{solution}
+\end{problem}
+
+
+%=========================================================
+\begin{figure}[h!]\centering
+	\begin{tikzpicture}
+		\draw (0,0) node[ocontact] {} to [resistor={info={$R$}}] (2,0) node[contact] (A1) {} to [resistor={info={$R$}}] (4,0) node[contact] (A2) {}  to [resistor={info={$R$}}] (6,0) node[contact] (A3) {};
+		\draw (0,-2) node[ocontact] {} to [resistor={info={$3R$}}] (2,-2) node[contact] (B1) {} to [resistor={info={$3R$}}] (4,-2) node[contact] (B2) {} to [resistor={info={$3R$}}] (6,-2) node[contact] (B3) {};
+		\draw (A1) to [resistor={info={$2R$}}] (B1) (A2) to [resistor={info={$2R$}}] (B2) (A3) to [resistor={info={$2R$}}] (B3);
+		\draw [dashed] (A3) -- (8,0)
+		(B3) -- (8,-2);
+		\node[left] at (0,0) {$A$};
+		\node[left] at (0,-2) {$B$};
+		\node[] at (8,-1) {$\infty$};
+	\end{tikzpicture}
+	\caption{До задачі~\ref{prb:inftycircuit}}
+	\label{inftycircuit}
+\end{figure}
+%=========================================================
+
+\begin{problem}\label{prb:Irodov2.195}
+Між точками $A$ та $B$ кола (рис.~\ref{Irodov2.195}) підтримують напругу $V = 20$~В. Знайти струм та його напрямок на ділянці $1 - 2$, якщо $R_1 = 5$~Ом і $R_2 = 10$~Ом.
+\begin{solution}
+	$I = \frac{V}{2}\frac{R_2 - R_1}{R_1R_2} = 1.0$~А. Струм тече від $1$ до $2$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+%\begin{problem}\label{prb:longcircuit}
+%    За якого опору $R_x$ у колі, що зображене на рис.~\ref{longcircuit}, опір між точками $A$ та $B$ не залежить від кількості ланок. 
+%\begin{solution}
+%	$R_x = R(\sqrt{3} - 1).$
+%\end{solution}
+%\end{problem}
+%
+%%---------------------------------------------------------
+%\begin{figure}[h!]\centering
+%	\begin{tikzpicture}
+%		\draw (0,0) node[ocontact] {} to [resistor={info={$2R$}}] (2,0) node[contact] (A1) {} to [resistor={info={$2R$}}] (4,0) node[contact] (A2) {}   (6,0) node[contact] (A3) {} to [resistor={info={$2R$}}] (8,0) node[contact] (A4) {};
+%		\draw (0,-2) node[ocontact] {} to  (2,-2) node[contact] (B1) {} to  (4,-2) node[contact] (B2) {}  (6,-2) node[contact] (B3) {} to (8,-2) node[contact] (B4) {};
+%		\draw (A1) to [resistor={info={$R$}}] (B1) (A2) to [resistor={info={$R$}}] (B2) (A3) to [resistor={info={$R$}}] (B3) (A4) to [resistor={info={$R_x$}}] (B4);
+%		\draw[dashed] (A2) -- (A3) (B2) -- (B3);
+%		\node[left] at (0,0) {$A$};
+%		\node[left] at (0,-2) {$B$};
+%	\end{tikzpicture}
+%	\caption{До задачі~\ref{prb:longcircuit}}
+%	\label{longcircuit}
+%\end{figure}
+%%---------------------------------------------------------
+
+%=========================================================
+\begin{problem}\label{prb:Irodov2.196}
+В схемі (рис.~\ref{Irodov2.196}) знайти опір між
+точками між точками $A$ та $B$, якщо $R_1 = 100$~Ом и $R_2 = 50$~Ом.
+\begin{solution}
+	$R_{AB}  = R_2 \frac{R_2 + 3R_1}{R_1 + 3R_2}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{figure}[h!]\centering
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\draw (0,1) node [ocontact] {} node [left] {$A$} node [below] {$+$} -- ++(1,0) node (RA) [contact] {}
+			% ---- верхня вітка ----
+			-- ++(0,1) to [resistor={info={$R_1$}}] ++(2,0) node [contact] {} node (1) [above] {$1$}
+			to [resistor={info={$R_2$}}] ++(2,0)
+			% ----------------------
+			-- ++(0,-1) node (LB) [contact] {} -- ++(0,-1)
+			% ---- нижня вітка ----
+			to [resistor={info={$R_1$}}] ++(-2,0) node [contact] {} node (2) [below] {$2$}
+			to [resistor={info={$R_2$}}] ++(-2,0) to (RA)
+			% ----------------------
+			(LB) -- +(1,0) node [ocontact] {} node [right] {$B$} node [below] {$-$}
+			(1) -- (2);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:Irodov2.195}}
+		\label{Irodov2.195}
+	\end{minipage}
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\draw (0,1) node [ocontact] {} node [left] {$A$} node [below] {$+$} -- ++(1,0) node (RA) [contact] {}
+			% ---- верхня вітка ----
+			-- ++(0,1) to [resistor={info={$R_1$}}] ++(2,0) node [contact] {} node (1) [above] {$1$}
+			to [resistor={info={$R_2$}}] ++(2,0)
+			% ----------------------
+			-- ++(0,-1) node (LB) [contact] {} -- ++(0,-1)
+			% ---- нижня вітка ----
+			to [resistor={info={$R_1$}}] ++(-2,0) node [contact] {} node (2) [below] {$2$}
+			to [resistor={info={$R_2$}}] ++(-2,0) to (RA)
+			% ----------------------
+			(LB) -- +(1,0) node [ocontact] {} node [right] {$B$} node [below] {$-$}
+			(1) to [resistor={info={$R_2$}}] (2);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:Irodov2.196}}
+		\label{Irodov2.196}
+	\end{minipage}
+	%---------------------------------------------------------
+\end{figure}
+%=========================================================
+
+%\newpage
+\section{Закон Джоуля-Ленца}
+
+\begin{Theory}\small
+    При проходженні струму по ділянці кола, робота електричного поля та сторонніх сил (у випадку неоднорідної ділянки) перетворюється в теплоту:
+	\begin{equation} 
+		A = Q.
+\end{equation}
+Потужність, що виділяється дорівнює:
+\begin{equation} 
+		P = U I,
+\end{equation}		
+де $U$~-- напруга ділянки кола, $I$~-- сила струму.
+
+Кількість теплоти, що виділяється за час $dt$ на ділянці провідника (закон Джоуля-Ленца):
+\begin{equation} 
+	dQ = I^2 R dt.
+\end{equation}
+  	
+Закон Джоуля-Ленца в диференціальній формі:
+\begin{equation} 
+w = \vect{j}\cdot\Efield,
+\end{equation}
+де $w$~-- теплова потужність, що виділяється в одиниці об'єму провідника при проходженні струму.		
+\end{Theory}
+
+%=========================================================
+\begin{problem}
+    Як зміниться кількість теплоти, що виділяється в провіднику, що увімкнений у мережу з постійною напругою, при зменшенні довжини провідника вдвічі?
+\end{problem}
+
+%=========================================================
+\begin{problem}
+    Запобіжник розрахований на силу струму $10$~А. Чи можна вмикати в мережу напругою $220$~В споживач потужністю $10$~кВт?
+\end{problem}
+
+
+%=========================================================
+\begin{problem}
+    У дволітровому електричному чайнику потужністю $1$~кВт вода закипає за $20$~хв, тоді як в чайнику потужністю $3$~кВт це зайняло б $5$~хв. Чому невигідні малопотужні при бори?
+\end{problem}
+
+
+%=========================================================
+\begin{problem}% Сивухин 261
+Є $n$ ідеально провідних тіл у вакуумі з зарядами $q_1$, $q_2$, \ldots, $q_n$ і потенціалами $\phi_1$, $\phi_2$, \ldots, $\phi_n$. Яка кількість теплоти буде виділятися щосекундно, якщо простір між цими тілами заповнити однорідною рідиною з питомою провідністю $\lambda$ і діелектричною проникністю $\epsilon$, а потенціали тіл підтримувати сталими?
+\begin{solution}
+	$Q = \frac{4\pi\lambda}{\epsilon}\sum\limits_i^n q_i\phi_i$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}% Киселев 6.3.7
+Простір між обкладками циліндричного конденсатора довжиною $l$ заповнено речовиною з питомим опором $\rho$ і діелектричною проникністю $\epsilon = 1$. Визначити теплову потужність струму, що виділяється в конденсаторі, якщо напруга між його обкладками $U$, радіуси обкладок $R_1$ і $R_2$. Крайовими ефектами знехтувати.
+\begin{solution}
+	$P = \frac{2\pi l U}{\rho\ln\frac{R_2}{R_1}}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}% Меледин 3.23
+Простір між обкладками сферичного конденсатора радіусами $R_1$ і $R_2$ заповнено провідним середовищем з провідністю $\lambda$ і діелектричної проникністю $\epsilon$. У початковий момент часу внутрішній обкладці надали заряд $q$. Знайти кількість, теплоти, що при цьому виділилося.
+\begin{solution}
+	$Q = \frac{q^2}{2\epsilon}\left( \frac{1}{R_1} - \frac{1}{R_2}\right) $.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}
+Зазор між обкладинками плоского конденсатора товщиною $d$ заповнений послідовно двома діелектричними шарами однакової товщини. Питомі опору шарів відповідно дорівнюють $\rho_1$ і $\rho_2$, діелектрична проникність $\epsilon = 1$. Площа обкладок $S$. На конденсатор подано напругу $U$. Знайти потужність, що виділяється в кожному шарі.
+\begin{solution}
+	$P_1  = \frac{2V^2}{d} \frac{\rho_1}{(\rho_1 + \rho_2)^2}S$, $P_2  = \frac{2V^2}{d} \frac{\rho_2}{(\rho_1 + \rho_2)^2}S$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem} % Гінденбург 3.19.
+Провідна куля знаходиться в середовищі з заданою провідністю $\lambda_e$. Густина струму далеко від кулі однорідна. При якому значенні провідності кулі $\lambda_i$ в ній виділяється найбільша потужність?
+\begin{solution}
+	Напруженість поля в середині кулі визначається формулою
+	\[
+		\Efield_i = \frac{3}{\lambda_i + 2\lambda_e} \vect{j}_0,
+	\]
+	де $\vect{j}_0$~-- густина струму далеко від кулі.
+	Потужність, що виділяється в одиниці об'єму згідно закону Джоуля-Ленца $w = \vect{j}_i\cdot\Efield_i$, отже, використовуючи закон Ома $ \vect{j}_i = \lambda_i\Efield_i$:
+	\[
+		w = \frac{9\lambda_i}{\left( \lambda_i + 2\lambda_e\right)^2} \vect{j}_i^2.
+	\]
+	Звідки випливає, що максимум потужності буде при $\lambda_i = 2\lambda_e$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:current_throgh_foil}
+    Струм протікає від мідної трубки радіусом $R_1 = 1$~мм до мідної трубки радіусом $R_2 = 1$~см через алюмінієву фольгу (рис.~\ref{current_throgh_foil}). Знайдіть товщину фольги, якщо при рівномірному зменшенні струму з $I_0 = 2$~А до нуля за $\tau = 1$~хв в фользі виділась теплота $Q=2$~мДж? Питомий опір алюмінію $\rho = 25$~нОм$\cdot$м. 
+\begin{solution}
+	$d = \frac{\rho I_0^2}{6\pi Q} \tau \ln\frac{R_2}{R_1}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:tin_foil}
+    Джерело ЕРС $\EMF$ зі з'єднувальними провідниками діаметром $d$ під'єднано до тонкостінної бляшанки довжиною $b$ (рис.~\ref{tin_foil}). Товщина стінок бляшанки $d$, а питомий опір матеріалу, з якого вона виготовлена $\rho$.  Внутрішнім опором джерела та з'єднувальних провідників можна знехтувати. При деякому  радіусі  бляшанки в колі виділяється максимальна теплова потужність. Визначте величину цієї потужності. 
+\begin{solution}
+	$P_{\max} = \frac{\pi\EMF^2 d}{\rho \left( 1 + \ln\left( \frac{b}{d}\right)  \right) }.$
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{figure}[h!]\centering
+%---------------------------------------------------------
+\begin{minipage}[t]{0.45\linewidth}\centering
+	\begin{tikzpicture}
+		%\draw [fill=red!50](3,0) ellipse (0.4 and 1) ;
+		\draw[top color=red!50, bottom color=red!50, middle color=white] (2,-1) -- ++(0.1,0) arc (-90:90:0.4 and 1) -- +(-0.1,0) arc (90:-90:0.4 and 1)  arc (270:-90:0.4 and 1);
+		\draw[top color=themecolordark, bottom color=themecolordark, middle color=white] (2,1) -- ++(2,0) arc (90:-90:0.4 and 1) -- +(-1.9,0) arc (-90:90:0.4 and 1);
+		\draw[top color=themecolordark, bottom color=themecolordark, middle color=white] (0,0.1) -- ++(2,0) arc (90:-90:0.05 and 0.1) -- ++(-2,0) arc (-90:90:0.05 and 0.1);
+		\draw (0,0.1) arc (90:270:0.05 and 0.1);
+		\draw[-latex, thick] (0.5,0) -- +(1,0) node[below] {$I$};
+		\path (0,0) -- ++(0,-2) to[battery={info'={\color{white}$EMF$}, color=white}] ++(4,0) -- ++(0,2);
+	\end{tikzpicture}
+\caption{До задачі~\ref{prb:current_throgh_foil}}
+\label{current_throgh_foil}
+\end{minipage}
+%---------------------------------------------------------
+\begin{minipage}[t]{0.45\linewidth}\centering
+	\begin{tikzpicture}
+		\begin{scope}[xshift=4cm]
+		\draw[top color=themecolordark, bottom color=themecolordark, middle color=white] (0,0.1) -- ++(2,0) arc (90:-90:0.05 and 0.1) -- ++(-2,0) arc (-90:90:0.05 and 0.1);
+		\draw (0,0.1) arc (90:270:0.05 and 0.1);
+		\end{scope}
+%		\draw[top color=red!50, bottom color=red!50, middle color=white] (3,-1) -- ++(0.1,0) arc (-90:90:0.4 and 1) -- +(-0.1,0) arc (90:-90:0.4 and 1)  arc (270:-90:0.4 and 1);
+		\draw[top color=red!50, bottom color=red!50, middle color=white] (2,0) ellipse (0.4 and 1);
+		\draw[top color=red!50, bottom color=red!50, middle color=white] (2,1) -- ++(2,0) arc (90:-90:0.4 and 1) -- +(-2,0) arc (-90:90:0.4 and 1);
+		\draw[top color=themecolordark, bottom color=themecolordark, middle color=white] (0,0.1) -- ++(2,0) arc (90:-90:0.05 and 0.1) -- ++(-2,0) arc (-90:90:0.05 and 0.1);
+		\draw (0,0.1) arc (90:270:0.05 and 0.1);
+		\draw (0,0) -- ++(0,-2) to[battery={info'=$\EMF$}] ++(6,0) -- ++(0,2);
+	\end{tikzpicture}
+\caption{До задачі~\ref{prb:tin_foil}}
+\label{tin_foil}
+\end{minipage}
+%---------------------------------------------------------
+\end{figure}
+%=========================================================
+
+%=========================================================
+\begin{problem}\label{prb:Zhurnal_Kvant_2017_7_F2452}%Журнал Кавант, 2017, №7, Ф2452
+    У початковий момент часу на лівому конденсаторі напруга дорівнює $V_0$, правий конденсатор не заряджений і обидва ключі розімкнуті (рис.~\ref{Zhurnal_Kvant_2017_7_F2452}). Спочатку замикають ключ $1$, потім, дочекавшись встановлення рівноваги, замикають ключ $2$. Знайдіть кількість теплоти, що виділилася на кожному з опорів.
+\begin{solution}
+	На кожному з опорів виділиться $Q = \frac{CV_0^2}{6}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:Bauman_2017_2tur_9}%Журнал Квант, 2017, №7, стор 50, задача №9
+    Яка кількість теплоти виділиться на резисторах після замикання ключа в схемі, що зображена на рис.~\ref{Bauman_2017_2tur_9}? Внутрішнім опором батареї знехтувати.
+\begin{solution}
+	$Q = \frac25 C\EMF^2$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:nonlinear_lamp}%Журнал Кавант, 2017, №8, стор. 49
+    У схемі, показаній на рис.~\ref{nonlinear_lamp}, обидва джерела однакові. Лампа є нелінійним елементом, її вольт-амперна характеристика (зв'язок струму з напругою) описується виразом $I = \frac2r\sqrt{\frac{\EMF V}{3}}$, де $r$~--- внутрішній опір, а $\EMF$~--- величина ЕРС кожного джерела. Поки ключ розімкнений, лампа споживає потужність $P_1 = 6$~Вт. Якою стане споживана лампою потужність $P_2$ після замикання ключа ?
+\begin{solution}
+	$P_2 = \frac{(\sqrt13 - 1)^3}{8}P_1 \approx 13.3$~Вт.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{figure}[h!]\centering
+%---------------------------------------------------------
+\begin{minipage}[t]{0.3\linewidth}\centering
+	\begin{tikzpicture}
+		\draw (0,0) to[capacitor={info'={$C$}}] ++(0,3) to [resistor={info={$R$}}] ++(2,0) node[contact] {} coordinate (A) to[resistor={info={$R$}}] ++(0,-2) to[make contact={info={$2$}}] ++(0,-0.5)  -- ++(0,-0.5) node[contact] {} coordinate (B) to[make contact={info={$1$}, rotate=180}] (0,0);
+		\draw (A) to [resistor={info={$R$}}] ++(2,0) to[capacitor={info'={$C$}}] ++(0,-3) -- (B);
+	\end{tikzpicture}
+\caption{До задачі~\ref{prb:Zhurnal_Kvant_2017_7_F2452}}
+\label{Zhurnal_Kvant_2017_7_F2452}
+\end{minipage}
+\hfill%---------------------------------------------------------
+\begin{minipage}[t]{0.3\linewidth}\centering
+	\begin{tikzpicture}
+		\draw (0,0) to[battery={info={$\EMF$},rotate=180}] ++(0,3) to [capacitor={info={$2C$}}] ++(2,0) node[contact] {} coordinate (A) to[capacitor={info={$3C$}}] ++(0,-3) node[contact] {} coordinate (B) -- (0,0);
+		\draw (A) to [make contact] ++(2,0) to[resistor={info'={$R$}}] ++(0,-3) -- (B);
+	\end{tikzpicture}
+\caption{До задачі~\ref{prb:Bauman_2017_2tur_9}}
+\label{Bauman_2017_2tur_9}
+\end{minipage}
+\hfill%---------------------------------------------------------
+\begin{minipage}[t]{0.3\linewidth}\centering
+	\begin{tikzpicture}
+		\draw (0,0) to[battery={info={$\EMF$},rotate=180}] ++(0,3) to  ++(2,0) node[contact] {} coordinate (A) to[battery={info={$\EMF$}}] ++(0,-3) coordinate (B) to[make contact={rotate=180}] (0,0);
+		\draw (A) to  ++(2,0) to[bulb] ++(0,-3) -- (B);
+	\end{tikzpicture}
+\caption{До задачі~\ref{prb:nonlinear_lamp}}
+\label{nonlinear_lamp}
+\end{minipage}
+%---------------------------------------------------------
+\end{figure}
+%=========================================================
+
+
+
+\Closesolutionfile{answer}
+

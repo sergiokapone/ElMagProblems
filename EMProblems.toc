@@ -1,0 +1,152 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {ukrainian}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Передмова}{5}{chapter*.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Рекомендації щодо розв'язку задач}{7}{chapter*.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Розділ~\numberline {0.~}Система рівнянь Максвелла}{9}{chapter.4}%
+\defcounter {refsection}{0}\relax 
+\setlength \@sectoctitle@len {35.64pt}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 0.1. }Рівняння Максвелла}{9}{section.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 0.2. }Закони збереження}{10}{section.26}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 0.3. }Граничні умови для полів}{11}{section.32}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 0.4. }Зв'язок між полями та потенціалами}{11}{section.37}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Розділ~\numberline {1.~}Електростатика}{12}{chapter.42}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 1.1. }Закон Кулона. Напруженість поля. Поняття потоку. Теорема Гауса}{12}{section.43}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 1.2. }Дипольний момент. Поле диполя. Сили, що діють на диполь з боку поля.}{17}{section.87}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 1.3. }Поняття потенціалу. Зв'язок потенціалу і напруженості}{19}{section.115}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 1.4. }Рівняння Максвелла у випадку електростатики. Рівняння Пуассона та Лапласа}{22}{section.138}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 1.5. }Провідники в електростатичному полі. Метод електричних зображень}{25}{section.173}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 1.6. }Граничні умови. Поле у речовині}{32}{section.228}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 1.7. }Електрична ємність. Ємність взаємна, ємності коефіцієнти}{38}{section.284}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 1.8. }Енергія електричного поля}{44}{section.342}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 1.9. }Пондеромоторні сили}{47}{section.377}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Розділ~\numberline {2.~}Постійний струм}{51}{chapter.409}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 2.1. }Струми в середовищах. Закон Ома в диференціальній формі}{51}{section.410}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 2.2. }Електричні кола. Правила Кірхгофа}{55}{section.446}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 2.3. }Закон Джоуля-Ленца}{57}{section.466}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Розділ~\numberline {3.~}Магнітостатика}{61}{chapter.487}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 3.1. }Закон Біо-Савара-Лапласа. Теорема про циркуляцію}{61}{section.488}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 3.2. }Векторний потенціал. Магнітний момент}{65}{section.519}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 3.3. }Магнітне поле у речовині. Граничні умови}{68}{section.552}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 3.4. }Пондеромоторні сили в магнітному полі. Енергія та тиск поля}{75}{section.616}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Розділ~\numberline {4.~}Електродинаміка}{82}{chapter.670}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 4.1. }Закон Фарадея}{82}{section.671}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 4.2. }Надпровідники у магнітному полі}{89}{section.729}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 4.3. }Рівняння Максвелла. Вектор Пойнтінга}{91}{section.744}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Розділ~\numberline {5.~}Рух частинок в електромагнітному полі}{96}{chapter.788}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 5.1. }Рух заряду електричному полі}{96}{section.789}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 5.2. }Рух заряду в магнітному полі}{97}{section.796}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 5.3. }Рух заряду в електричному та магнітному полях}{97}{section.801}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Розділ~\numberline {6.~}Релятивіствька електродинаміка}{101}{chapter.818}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 6.1. }Перетворення електричних та магнітних полів}{101}{section.819}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Розділ~\numberline {7.~}Квазістаціонарні струми в електричних колах}{103}{chapter.832}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 7.1. }Перехідні процеси в електричних колах}{103}{section.833}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 7.2. }Вільні коливання в електричних колах}{104}{section.840}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {\S \hspace \@spase 7.3. }Вимушені коливання в електричних колах. Резонанс}{105}{section.850}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Відповіді}{109}{chapter*.882}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Додатки}{144}{appendix*.972}%
+\defcounter {refsection}{0}\relax 
+\setlength \@sectoctitle@len {71.65439pt}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {Додаток\hspace \@spase А. }Основні формули векторного аналізу}{144}{section.973}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {А.1}Диференціальні оператори}{144}{subsection.974}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {А.2}Диференціальні операції в різних системах координат}{144}{subsection.979}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Декартова система координат}{144}{section*.980}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Циліндрична система координат}{145}{section*.985}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{Сферична система координат}{145}{section*.990}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {А.3}Другі похідні}{145}{subsection.995}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {А.4}Похідні від добутків}{145}{subsection.999}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {А.5}Інтегральні характеристики та теореми}{146}{subsection.1007}%
+\defcounter {refsection}{0}\relax 
+\setlength \@sectoctitle@len {70.1856pt}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {Додаток\hspace \@spase Б. }Системи одиниць в електродинаміці}{147}{section.1013}%
+\defcounter {refsection}{0}\relax 
+\setlength \@sectoctitle@len {70.76158pt}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {Додаток\hspace \@spase В. }Сфери в елетричному та магнітному полях}{149}{section.1016}%
+\defcounter {refsection}{0}\relax 
+\setlength \@sectoctitle@len {69.60959pt}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {Додаток\hspace \@spase Г. }Фізичні константи}{153}{section.1023}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Література}{154}{appendix*.1026}%
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}
+\babel@toc {russian}{}
+\babel@toc {ukrainian}{}

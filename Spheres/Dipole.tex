@@ -1,0 +1,403 @@
+%arara
+
+%%============================ Compiler Directives =======================%%
+%%                                                                        %%
+% !TeX program = pdflatex
+% !TeX encoding = utf8
+% !TeX spellcheck = uk_UA
+% !BIB program = biber
+%%                                                                        %%
+%%============================== Клас документа ==========================%%
+%%                                                                        %%
+\documentclass[12pt, oneside]{extarticle}
+%%                                                                        %%
+%%========================== Мови, шрифти та кодування ===================%%
+%%  
+\usepackage{ifluatex}  
+\ifluatex                                                                    
+\usepackage{fontspec}
+\setsansfont{CMU Sans Serif}%{Arial}
+\setmainfont{CMU Serif}%{Times New Roman}
+\setmonofont{CMU Typewriter Text}%{Consolas}
+\defaultfontfeatures{Ligatures={TeX}}
+\usepackage{amsmath}
+\usepackage[math-style=TeX]{unicode-math}
+\else
+\usepackage[utf8]{inputenc}
+\usepackage[T2A,T1]{fontenc}
+\usepackage{amsmath}
+\fi
+\usepackage[english, russian, ukrainian]{babel}
+%%                                                                        %%
+%%============================= Геометрія сторінки =======================%%
+%%                                                                        %%
+\usepackage[%
+a4paper,%
+footskip=1cm,%
+headsep=0.3cm,% 
+top=2cm, %поле сверху
+bottom=2cm, %поле снизу
+left=1cm, %поле ліворуч
+right=1cm, %поле праворуч
+]{geometry}                          
+%%                                                                        %%
+%%========================== Оформлення бібліографії =====================%%
+%%                                                                        %%
+\usepackage[%
+backend=biber, 
+style=draft,
+babel=other, 
+isbn=false, 
+url=false,
+doi=false]{biblatex}
+\newbibmacro{string+doiurlisbn}[1]{%
+  \iffieldundef{doi}{%
+    \iffieldundef{url}{%
+      \iffieldundef{isbn}{%
+        \iffieldundef{issn}{%
+          #1%
+        }{%
+          \href{http://books.google.com/books?vid=ISSN\thefield{issn}}{#1}%
+        }%
+      }{%
+        \href{http://books.google.com/books?vid=ISBN\thefield{isbn}}{#1}%
+      }%
+    }{%
+      \href{\thefield{url}}{#1}%
+    }%
+  }{%
+    \href{http://dx.doi.org/\thefield{doi}}{#1}%
+  }%
+}
+\AtEveryBibitem{%
+  \clearlist{language}%
+}
+\DeclareFieldFormat{title}{\usebibmacro{string+doiurlisbn}{#1}}                                                                    
+%%============================== Інтерліньяж  ============================%%
+%%                                                                        %%
+\renewcommand{\baselinestretch}{1}
+%-------------------------  Подавление висячих строк  --------------------%%
+\clubpenalty =10000
+\widowpenalty=10000
+%---------------------------------Інтервали-------------------------------%%
+\setlength{\parskip}{0.5ex}%
+\setlength{\parindent}{2.5em}%
+%%                                                                        %%
+%%=========================== Математичні пакети і графіка ===============%%
+%%                                                                        %%
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{floatflt}
+%%                                                                        %%
+%%=========================== Таблиці та кольори =========================%%
+%%                                                                        %%
+\usepackage{xcolor, colortbl}
+\usepackage{longtable}
+\usepackage{array,ragged2e}
+\setlength\arrayrulewidth{1pt}
+\newcounter{magicrownumbers}
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+\usepackage{tikz,pgf}
+\usetikzlibrary{external}
+\tikzexternalize[prefix=pict/] 
+\usetikzlibrary{decorations.text, decorations.markings}
+\usetikzlibrary{arrows}  
+
+\def\EMF{\ifmmode\mathcal{E}\else$\mathcal{E}$\fi}
+\ifluatex
+\newcommand{\vect}[1]{\symbf{#1}}
+\else
+\newcommand{\vect}[1]{\mathbf{#1}}
+\fi
+\AtBeginDocument{%
+\def\Efield{\vect{E}}
+\def\Dfield{\vect{D}}
+\def\Bfield{\vect{B}}
+\def\Hfield{\vect{H}}
+\let\phi\varphi
+\let\epsilon\varepsilon}
+%%                                                                        %%
+%%========================== Гіперпосилення (href) =======================%%
+%%                                                                        %%
+\usepackage[colorlinks=true,
+urlcolor = blue, %Colour for external hyperlinks
+linkcolor  = red!60, %Colour of internal links
+citecolor  = green!70!black, %Colour of citations
+%bookmarks = true,
+bookmarksnumbered=true,
+unicode,
+linktoc = all,
+hypertexnames=false,
+pdftoolbar=false,
+%pdfpagelayout=TwoPageRight,
+pdfauthor={Ponomarenko S.M.},
+pdfdisplaydoctitle=true,
+pdfencoding=auto
+]%
+{hyperref}
+\makeatletter
+\AtBeginDocument{
+\hypersetup{
+pdfinfo={
+Title={\@title},
+}
+}
+}
+\makeatother
+%\addbibresource{\jobname.bib} 
+%%                                                                        %%
+%%============================ Заголовок та автори =======================%%
+%%                                                                        %%
+\title{\large\bfseries Сфери в електричному та магнітному полях}   
+\date{}                            
+%%                                                                        %%
+%%========================================================================%%
+
+
+\begin{document}
+
+\maketitle\thispagestyle{empty}
+
+\begin{center}
+	Позначення
+\end{center}
+\begin{enumerate}
+	\item $\Efield_0$ та $\Bfield_0$~-- поля на далекій відстані від куль.
+	\item $R$~-- радіус кулі.
+	\item Індекс $e$ відноситься до оточуючого середовища, $i$~-- до матеріалу кулі.
+	\item Формули для діелектриків можна замінити на формули для металів, якщо покласти $\frac{1}{\epsilon} \to 0$.
+	\item Формули для магнетиків можна замінити на формули для надпровідників, якщо покласти $\mu = 0$.
+\end{enumerate}
+
+\newpage
+\renewcommand{\arraystretch}{1.5}% 
+
+\begin{center}
+	\begin{longtable}{|p{0.45\textwidth}|p{0.45\textwidth}|}
+		\hline
+		\multicolumn{1}{|>{\centering\arraybackslash}m{0.45\textwidth}|}{\cellcolor{cyan!50}\textbf{Вигляд силових ліній}} & \multicolumn{1}{>{\centering\arraybackslash}m{0.45\textwidth}|}{\cellcolor{cyan!50}\textbf{Формули}} \\
+		\hline
+		\endhead
+		%============================================================================================ 
+		\multicolumn{2}{|c|}{\cellcolor{cyan!10}Діелектрична куля в однорідному електричному полі}                                                                                                                                \\
+		\hline
+
+		\begin{center}
+			Поле вектора $\Efield$ ($\epsilon_i > \epsilon_e$)
+
+			\input{Efield0.tikz}
+
+			Поле вектора $\Dfield$ ($\epsilon_i > \epsilon_e$)
+
+			\input{Dfield0.tikz}
+
+			Поле вектора $\Efield$ ($\epsilon_i < \epsilon_e$)
+
+			\input{Efield1.tikz}
+
+			Поле вектора $\Dfield$ ($\epsilon_i < \epsilon_e$)
+
+			\input{Dfield1.tikz}
+
+		\end{center}
+
+		                                                                                                                   &
+		Дипольний момент кулі:
+
+		\[\vect{p} = \frac{\epsilon_i - \epsilon_e}{\epsilon_i + 2\epsilon_e}R^3\Efield_0,\]
+
+		{\scriptsize Напрямок дипольного моменту визначається різницею $\epsilon_e - \epsilon_e$.}
+
+		Потенціал кулі:
+
+		\[
+			\phi =
+			\begin{cases}
+				-\frac{3\epsilon_e}{\epsilon_i + 2\epsilon_e}\left( \Efield_0\cdot \vect{r}\right), & r \le R \\
+				-\left( \Efield_0\cdot \vect{r}\right) + \frac{\vect{p} \vect{r}}{r^3},             & r > R
+			\end{cases}
+			,\]
+
+		Поле кулі:
+
+		\[
+			\Efield =
+			\begin{cases}
+				\frac{3\epsilon_e}{\epsilon_i + 2\epsilon_e} \Efield_0,                                 & r \le R \\
+				\Efield_0 - \frac{\vect{p}}{r^3} + \frac{3\left(\vect{p}\vect{r}\right)\vect{r} }{r^5}, & r > R,
+			\end{cases}
+		\]
+
+		Зв'язані заряди на поверхні:
+
+		\[\sigma' = \frac{3}{4\pi} \frac{\epsilon_i - \epsilon_e}{\epsilon_i + 2\epsilon_e} \frac{\Efield_0\vect{r}}{R}.\]
+
+
+		\\
+		%============================================================================================  
+		\hline\pagebreak
+		\multicolumn{2}{|c|}{\cellcolor{cyan!10}Металева сфера в однорідному електричному полі}                                                                                                                                   \\
+		\hline
+
+		\begin{center}
+			Поле вектора $\Efield$
+
+			\input{EfieldMetall.tikz}
+
+		\end{center}
+
+		                                                                                                                   &
+
+		Дипольний момент кулі:
+
+		\[\vect{p} = R^3\Efield_0,\]
+
+		Потенціал кулі:
+
+		\[
+			\phi =
+			\begin{cases}
+				0,                                                                      & r \le R \\
+				-\left( \Efield_0\cdot \vect{r}\right) + \frac{\vect{p} \vect{r}}{r^3}, & r > R
+			\end{cases}
+			,\]
+
+		Поле кулі:
+
+		\[
+			\Efield =
+			\begin{cases}
+				0,                                                                                      & r \le R \\
+				\Efield_0 - \frac{\vect{p}}{r^3} + \frac{3\left(\vect{p}\vect{r}\right)\vect{r} }{r^5}, & r > R,
+			\end{cases}
+		\]
+
+		Вільні заряди на поверхні:
+
+		\[\sigma = \frac{3}{4\pi} \frac{\Efield_0\vect{r}}{R}.\]
+
+		\\
+		\hline
+		\multicolumn{2}{|c|}{\cellcolor{cyan!10}Провідна куля в середовищі з провідністю по якому тече струм}                                                                                                                     \\
+		\hline
+
+		\begin{center}
+
+			Поле вектора $\vect{j}$ ($\lambda_i > \lambda_e$)
+
+			\input{Dfield0.tikz}
+
+			Поле вектора $\vect{j}$ ($\lambda_i < \lambda_e$)
+
+			\input{Dfield1.tikz}
+
+		\end{center}
+
+
+		                                                                                                                   &
+
+		Дипольний момент кулі:
+
+		\[\vect{p} = \frac{\lambda_i - \lambda_e}{\lambda_i + 2\lambda_e}R^3\Efield_0,\]
+
+		Поле:
+		\[
+			\Efield =
+			\begin{cases}
+				\frac{3\lambda_e}{\lambda_i + 2\lambda_e} \Efield_0,                                    & r \le R \\
+				\Efield_0 - \frac{\vect{p}}{r^3} + \frac{3\left(\vect{p}\vect{r}\right)\vect{r} }{r^5}, & r > R,
+			\end{cases}
+		\]
+
+		Густина струму:
+
+		\[
+			\vect{j} =
+			\begin{cases}
+				\frac{3\lambda_e}{\lambda_i + 2\lambda_e} \vect{j}_0,                                                       & r \le R \\
+				\vect{j}_0  + \lambda_e\frac{3\left(\vect{p}\vect{r}\right)\vect{r} }{r^5} - \lambda_e\frac{\vect{p}}{r^3}, & r > R,
+			\end{cases}
+		\]
+
+		Заряди на поверхні:
+
+		\[\sigma = \frac{3}{4\pi} \frac{\lambda_i - \lambda_e}{\lambda_i + 2\lambda_e} \frac{\Efield_0\vect{r}}{R}.\]
+		\\
+		\hline\pagebreak
+		\multicolumn{2}{|c|}{\cellcolor{cyan!10}Куля з магнетика в однорідному магнітному полі}                                                                                                                                   \\
+		\hline
+
+
+		\begin{center}
+			Поле вектора $\Hfield$ ($\mu_e > \mu_e$)
+
+			\input{Hfield.tikz}
+
+			Поле вектора $\Bfield$ ($\mu_e > \mu_e$)
+
+			\input{Bfield.tikz}
+		\end{center}
+
+		                                                                                                                   &
+		Дипольний момент кулі:
+
+		\[\vect{p}_m = \frac{\mu_i - \mu_e}{\mu_i + 2\mu_e}R^3\Bfield_0,\]
+
+		Поле кулі:
+
+		\[
+			\Bfield =
+			\begin{cases}
+				\frac{3\mu_i}{\mu_i + 2\mu_e} \Bfield_0,                                                    & r \le R \\
+				\Bfield_0 - \frac{\vect{p}_m}{r^3} + \frac{3\left(\vect{p}_m\vect{r}\right)\vect{r} }{r^5}, & r > R,
+			\end{cases}
+		\]
+
+		Густина об'ємних струмів намагнічування $\vect{j}' = 0$.
+
+		Поверхнева густина струмів намагнічування
+		\[i = \frac{3c}{4\pi} \frac{\mu_i - \mu_e}{\mu_i + 2\mu_e} \frac{\Bfield_0\vect{r}}{R},\]
+		де $\vect{r}$~-- радіус-вектор поверхні провідника.
+
+		\\
+		\hline
+		\multicolumn{2}{|c|}{\cellcolor{cyan!10}Надпровідна куля в однорідному магнітному полі $\Bfield_0$}                                                                                                                       \\
+		\hline
+
+		\begin{center}
+			Поле вектора $\Bfield$
+			\input{BSupercond.tikz}
+		\end{center}
+		                                                                                                                   &
+
+		Дипольний момент кулі:
+
+		\[\vect{p}_m = - \frac{1}{2}R^3\Bfield_0,\]
+
+		Поле кулі:
+
+		\[
+			\Bfield =
+			\begin{cases}
+				0,                                                                                          & r \le R \\
+				\Bfield_0 - \frac{\vect{p}_m}{r^3} + \frac{3\left(\vect{p}_m\vect{r}\right)\vect{r} }{r^5}, & r > R,
+			\end{cases}
+		\]
+
+		Густина об'ємних струмів намагнічування $\vect{j}' = 0$.
+
+		Поверхнева густина струмів намагнічування
+		\[i = -\frac{3c}{8\pi} \frac{\Bfield_0\vect{r}}{R},\]
+		де $\vect{r}$~-- радіус-вектор поверхні провідника.
+
+		\\
+		\hline
+	\end{longtable}
+\end{center}
+
+
+
+
+\end{document}
+
+

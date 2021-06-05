@@ -1,0 +1,629 @@
+% !TeX program = lualatex
+% !TeX encoding = utf8
+% !TeX spellcheck = uk_UA
+% !TeX root =../EMProblems.tex
+
+%=========================================================
+\Opensolutionfile{answer}[\currfilebase/\currfilebase-Answers]
+\Writetofile{answer}{\protect\section*{\nameref*{\currfilebase}}}
+\chapter{Квазістаціонарні струми в електричних колах}\label{\currfilebase}
+%=========================================================
+
+\section{Перехідні процеси в електричних колах}
+
+%=========================================================
+\begin{problem}\label{prb:RL}% Іродов 2.349
+Знайти закон зміни в часі струму, який тече через індуктивність $L$ в схемою (рис.~\ref{RL}) після замикання ключа  в момент $t = 0$.
+\begin{solution}
+	$I = \frac{\EMF}{R}\left( 1-e^{-\frac{R}{2L}t}\right) $.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:RLL}% Іродов 2.350
+У схемі (рис.~\ref{RLL}) відомі ЕРС $\EMF$ джерела, опір $R$ і індуктивності котушок $L_1$ і $L_2$. Внутрішнім опором джерела і опором котушок можна знехтувати. Знайти струми, які встановляться в котушках після замикання ключа.
+\begin{solution}
+	$I_1 = \frac{\EMF}{R} \frac{L_2}{L_1 + L_2}$, $I_2 = \frac{\EMF}{R} \frac{L_1}{L_1 + L_2}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{figure}[h!]\centering
+	\begin{minipage}[b]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\draw (0,1) to [battery={info={$\EMF$}}] (0,-1);
+			\draw (0,1) to [make contact] +(2,0) node (A) [contact] {} to [resistor={info'={$R$}}] +(2,-2) node (B) [contact]  {} to [resistor={info'={$R$}}] + (0,-2);
+			\draw (A) -- ++(1,0) to [inductor={info'={$L$}}] ++(0,-2) coordinate (S)
+			-- (B);
+			\draw [white] (S) to [battery={white}] +(0.2,0); % jus shifting
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:RL}}
+		\label{RL}
+	\end{minipage}
+	%---------------------------------------------------------
+	\begin{minipage}[b]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\draw (0,0) coordinate (A) to [battery={info={$\EMF$}}] +(1,0) to [resistor={info={$R$}}] +(3,0) coordinate (B);
+			\draw (A) -- +(0,1) node [contact] (C) {} -- ++(0,2) to [inductor={info={$L_1$}}] ++(3,0) -- +(0,-1) node [contact] (D) {} to [make contact] (B)
+			(C) to [inductor={info={$L_2$}}] (D);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:RLL}}
+		\label{RLL}
+	\end{minipage}
+\end{figure}
+%=========================================================
+
+
+%=========================================================
+\begin{problem}\label{prb:c4}
+У колі, зображеному на рис.~\ref{c4}, ЕРС батареї $\EMF = 100$~В, опори резісторів $R_1 = 10$~Ом і $R~2 = 6$~Ом, а ємності конденсаторів $C_1 = 60$~мкФ і $C_1 = 100$~мкФ. У початковому стані ключ розімкнений, а конденсатори не заряджені. Через деякий час після замикання ключа в системі встановиться рівновага. Яка кількість теплоти виділиться в колі за час встановлення рівноваги?
+\begin{solution}
+	$Q = \frac{C_1\EMF^2}{2} = 0.3$~Дж.
+\end{solution}
+\end{problem}
+
+
+%=========================================================
+\begin{problem}\label{prb:fizportal}
+У схемі на рис.~\ref{fizportal} після встановлення струмів миттєво перекидають ключ з положення $1$ в положення $2$. Вважаючи котушки $L_1$ і $L_2$ ідеальними, визначте кількість теплоти, що виділиться на резисторі $R$. ЕРС джерела струму $\EMF$, а внутрішній опір $r$.
+\begin{solution}
+	$Q = \frac{L_2\EMF^2}{2r^2}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{figure}[h!]\centering
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\draw (-2,1) to [battery={info'={$\EMF$}}] (-2,-1);
+			\draw (-2,1) to [capacitor={info'={$C_1$}}] ++(1,0) to [make contact] ++(1,0) coordinate (A) node [contact] {} to[resistor={info={$R_1$}}] +(0,-2) coordinate (B) node [contact] {} -- (-2,-1)
+			(A) to[resistor={info={$R_2$}}] ++(2,0) to [capacitor={info'={$C_2$}}] ++(0,-2) -- (B);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:c4}}
+		\label{c4}
+	\end{minipage}
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\draw (1,-1) to [resistor={info'={$R$}}] (1,1) coordinate (A) to [make contact={yscale={-1}}] +(-0.6,0) coordinate (one) -- (-1,1) to [battery={info={$r$}, info'={$\EMF$}}] (-1,-1) -- (1,-1);
+			\draw (A) to [inductor={info'={$L_1$}}] ++(2,0) coordinate (B) to [inductor={info={$L_2$}}] +(0,-2) -- (1,-1);
+			\draw (1,1.3) node[contact] {} node[above] {$2$} -- ({1,1.3}-|B) -- (B);
+			\node[contact] at ([xshift=0.1cm]one) {} ;
+			\node[below] at ([xshift=0.1cm]one) {$1$};
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:fizportal}}
+		\label{fizportal}
+	\end{minipage}
+	%---------------------------------------------------------
+\end{figure}
+%=========================================================
+
+\section{Вільні коливання в електричних колах}
+
+%=========================================================
+\begin{problem}\label{prb:Irodov3.118}
+Знайти максимальний струм в колі (рис~\ref{Irodov3.118}) і максимальну напруга на
+конденсаторі після замикання ключа. Активним опором кола можна знехтувати.
+\begin{solution}
+	$I_{\max} = \EMF\sqrt{\nfrac{C}{L}}$, $U_{C\max} =2 \EMF$.
+\end{solution}
+\end{problem}
+%---------------------------------------------------------
+\begin{figure}[h!]\centering
+	\begin{tikzpicture}
+		\draw
+		(0,0) to [make contact] (2,0) to [capacitor={info'={$C$}}] (2,2) to [inductor={rotate=180, info={$L$}}]  (0,2) to [battery={info'={$\EMF$}}] (0,0);
+	\end{tikzpicture}
+	\caption{До задачі~\ref{prb:Irodov3.118}}
+	\label{Irodov3.118}
+\end{figure}
+%---------------------------------------------------------
+
+%=========================================================
+\begin{problem}% КРС 9.5
+Коливальний контур містить індуктивність і ємність. В деякий момент часу з конденсатора швидко витягують пластину з діелектричною проникністю $\epsilon$. Як зміниться частота коливань контуру? У скільки разів зміняться максимальні величини заряду на конденсаторі і струму в котушці, якщо пластину витягують в момент, коли заряд на конденсаторі
+\begin{enumerate*}[label=\alph*)]
+	\item відсутній
+	\item максимальний?
+\end{enumerate*}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:Irodov3.140}
+Знайти частоти згасаючих коливань контуру, який показаний показаного на рис~\ref{Irodov3.140}. Ємність $C$, індуктивність $L$ і активний опір $R$ вважати відомими.
+\begin{solution}
+	$\omega = \frac{i}{2RC} \pm \sqrt{\frac{1}{LC} - \frac{1}{4R^2C^2}}$, комплексному $\omega$ відповідають згасаючі коливання в контурі.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:krs10.41} % КРС 10.41
+Високодобротний коливальний контур (рис.~\ref{krs10.41}) включає дві послідовно з'єднані котушки з індуктивностями $L_1$ і $L_2$. Після того, як котушку $L_2$ замикають накоротко, частота власних коливань контуру не змінюється. Визначити коефіцієнт взаємної індукції $М$.
+\begin{solution}
+	$M = -L_2$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:Bugaenko234}
+Визначити частоти вільних коливань у двох індуктивно зв'язаних контурах, схема яких подана на рис.~\ref{Bugaenko234}. Коефіцієнт взаємної індукції контурів~$L_{12}$.
+\begin{solution}
+	$\omega_{1,2}^2 = \frac{L_1C_1 + L_2C_2 \pm \sqrt{(L_1C_1 - L_2C_2)^2 + 4C_1C_2L_{12}^2}}{2C_1C_2(L_1L_2 - L_{12}^2)}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{figure}[h!]\centering
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.3\linewidth}\centering
+		\begin{tikzpicture}
+			\draw
+			(0,0) to [inductor={info={$L$}}] (0,2) -- +(1,0) node [contact] (A) {} -- +(2,0) to [capacitor={info={$C$}}] (2,0) -- +(-1,0) node [contact] (B) {} -- +(-2,0)
+			(A) to [resistor={info'={$R$}}] (B);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:Irodov3.140}}
+		\label{Irodov3.140}
+	\end{minipage}
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.3\linewidth}\centering
+		\begin{tikzpicture}[rotate=90]
+			\newcommand{\shift}{0.8}
+			\draw (2,0) to [capacitor={info'={$C$}}] (0,0) -- ++(0,1) -- ++(\shift,0) to [inductor={rotate=180, info'={$L_1$}}] ++(0,1) -- ++(-\shift,0) -- ++(0,1) -- ++(2,0) -- ++(0,-1) coordinate (A) -- ++(-\shift,0) to [inductor={rotate=180, info'={$L_2$}}] ++(0,-1) -- ++(\shift,0) coordinate (B) -- (2,0)
+			(A) to [make contact] (B);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:krs10.41}}
+		\label{krs10.41}
+	\end{minipage}
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.3\linewidth}\centering
+		\begin{tikzpicture}
+			\coordinate (A) at (0,2);
+			\coordinate (B) at (0,0);
+			\coordinate (C) at (2,2);
+			\coordinate (D) at (2,0);
+			\draw
+			(B) to [capacitor={info'={$C_1$}}] (A) -- (C) to [inductor={info'={$L_1$}}] (D) -- (B);
+			\coordinate (A1) at (2.5,2);
+			\coordinate (B1) at (2.5,0);
+			\coordinate (C1) at (4.5,2);
+			\coordinate (D1) at (4.5,0);
+			\draw (B1) to [inductor={info'={$L_2$}}] (A1) -- (C1) to [capacitor={info'={$C_2$}}] (D1) -- (B1);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:Bugaenko234}}
+		\label{Bugaenko234}
+	\end{minipage}
+	%---------------------------------------------------------
+\end{figure}
+%=========================================================
+
+
+%%=========================================================
+%\begin{problem}\label{prb:Bugaenko}
+%Визначити моди вільних незгасаючих коливань у колі, схема якого подана на 
+%\begin{enumerate*}[label=\alph*)]
+%\item рис.~\ref{Bugaenko235} та
+%\item рис.~\ref{Bugaenko236}.
+%\end{enumerate*}
+%\begin{solution}
+%\begin{enumerate}[label=\alph*)]
+%\item $\omega_{1,2}^2 = \dfrac{[L_1(C+C_1) - L_2(C + C_2)] \pm \sqrt{[L_1(C + C_1) - L_2(C + C_2)]^2+4L_1L_2C^2}}{2L_1L_2(C_1C_2 + CC_1 + CC_2)}$.
+%\item \begin{multline*}
+%	\omega_{1,2}^2 = \frac12\left( \frac{1}{LC_1} + \frac{1}{LC_2} +\frac{1}{L_1C_1} +\frac{1}{L_2C_2} \right)\pm \\ \pm\frac12\sqrt{\left[\frac{1}{C_1}\left( \frac{1}{L} + \frac{1}{L_1}\right) - \frac{1}{C_2} \left( \frac{1}{L} + \frac{1}{L_2}\right) \right]^2 + \frac{4}{L^2C_1C_2}}.
+%\end{multline*}
+%\end{enumerate}
+%\end{solution}
+%\end{problem}
+%
+%%%=========================================================
+%\begin{figure}[h!]\centering
+%	%---------------------------------------------------------
+%	\subfloat[\label{Bugaenko235}]{%
+%		\begin{tikzpicture}
+%			\coordinate (A) at (0,2);
+%			\coordinate (B) at (0,0);
+%			\node [contact] (C) at (2,2) {};
+%			\node [contact](D) at (2,0) {};
+%			\node [contact](E) at (4,2) {};
+%			\node [contact](F) at (4,0) {};
+%			\coordinate (G) at (6,2) {};
+%			\coordinate (H) at (6,0) {};
+%			\draw (B) to [inductor={info'={$L_1$}}] (A)
+%			(D) to [capacitor={info'={$C_1$}}] (C)
+%			(E) to [capacitor={info={$C_2$}}] (F)
+%			(G) to [inductor={info'={$L_2$}}] (H)
+%			(C) to [capacitor={info={$C$}}] (E)
+%			(A) -- (C) (E) -- (G)
+%			(B) -- (D) -- (F) -- (H)
+%			;
+%		\end{tikzpicture}
+%	}
+%	\quad
+%	%---------------------------------------------------------
+%	\subfloat[\label{Bugaenko236}]{
+%			\begin{tikzpicture}
+%				\coordinate (A) at (0,2);
+%				\coordinate (B) at (0,0);
+%				\node [contact] (C) at (2,2) {};
+%				\node [contact](D) at (2,0) {};
+%				\node [contact](E) at (4,2) {};
+%				\node [contact](F) at (4,0) {};
+%				\coordinate (G) at (6,2) {};
+%				\coordinate (H) at (6,0) {};
+%				\draw (B) to [inductor={info'={$L_1$}}] (A)
+%				(D) to [capacitor={info'={$C_1$}}] (C)
+%				(E) to [capacitor={info={$C_2$}}] (F)
+%				(G) to [inductor={info'={$L_2$}}] (H)
+%				(C) to [inductor={info={$L$}}] (E)
+%				(A) -- (C) (E) -- (G)
+%				(B) -- (D) -- (F) -- (H)
+%				;
+%			\end{tikzpicture}
+%	}
+%	%---------------------------------------------------------
+%	\caption{До задачі~\ref{prb:Bugaenko}}
+%\end{figure}
+
+%=========================================================
+\section{Вимушені коливання в електричних колах. Резонанс}
+\begin{Theory}
+\begin{center}
+	\begin{tabular}{llll}
+		Елемент
+		              & \tikz[baseline]{\draw (0,1) node [contact] {} to[resistor={info={$R$}}] (0,-1)  node [contact] {}}
+		              & \tikz[baseline]{\draw (0,1) node [contact] {} to[capacitor={info={$C$}}] (0,-1) node [contact] {} }
+		              & \tikz[baseline]{\draw (0,1) node [contact] {} to[inductor={info={$L$}}] (0,-1) node [contact] {}}                                         \\
+		Імпеданс, $Z$ & $R$                                                                                                 & $\frac{1}{i\omega C}$ & $i\omega L$ \\
+	\end{tabular}
+\end{center}
+
+Результати, отримані формальним застосуванням правил Кірхгофа для постійних струмів, в комплексній формі \emph{зберігають вигляд і для встановлених квазістаціонарних гармонічних струмів}.
+\textit{Перше правило Кірхгофа}: алгебраїчна сума комплексних струмів у вузлі дорівнює нулю:
+\begin{equation}
+	\sum\limits_{i} I_i = 0
+\end{equation}
+
+\textit{Друге правило Кірхгофа}: сума спадів напруг $I_iZ_i$у контурі дорівнює сумі електрорушійних сил, які діють у цьому контурі:
+\begin{equation}
+	\sum\limits_{i} I_i Z_i = \sum\limits_{j}\EMF_j
+\end{equation}
+Середня потужність, що виділяється у вигляді теплоти (потужність втрат) за період визначається як:
+\begin{equation}
+	\left\langle P\right\rangle  = \frac12 U_0I_0\cos\phi,
+\end{equation}
+де $U_0$ та $I_0$~--- амплітудні значення сили напруги та струму в колі, $\phi$~--- зсув фаз між напругою та струмом.
+
+Потужність втрат за період виражена через амплітуду струму:
+\begin{equation}
+	\left\langle P\right\rangle  = \frac12 I_0^2\mathrm{Re}Z,
+\end{equation}
+де $I_0$~--- амплітуда струму в електричному колі, $\mathrm{Re}Z$~---дійсна частина комплексного імпедансу кола $Z$.
+
+Величини 
+\begin{align}
+	U_{e\kern-2.2pt f\kern-3pt f} = \frac{U_0}{\sqrt2}\\
+	I_{e\kern-2.2pt f\kern-3pt f} = \frac{I_0}{\sqrt2}
+\end{align}
+Називаються діючими значеннями напруги та сили струму.
+\end{Theory}
+
+\subsection*{Правила Кірхгофа для змінного струму}
+
+%=========================================================
+\begin{problem}\label{prb:current_ampermeter}
+Частота змінної напруги у контурі pjбраженому на рис.~\ref{current_ampermeter} дорівнює $\omega = \frac{1}{\sqrt{LC}}$. Як залежить струм, що тече через амперметр, від опору реостата $R$?
+\begin{solution}
+	$I = \frac{\EMF}{i\omega L}$, тобто струм через амперметр не залежить від опору реостата.
+\end{solution}
+\end{problem}
+%---------------------------------------------------------
+\begin{figure}[h!]\centering
+    \begin{tikzpicture}
+		    \draw (0,-1) coordinate (START) to [ac source={rotate=-90,info={left:$\mathcal{E}$}}] (0,1) to [inductor={info={$L$}}] ++(3,0) -- ++(0,-2) coordinate(D) to [capacitor={info'={$C$}}] (START) -- cycle;
+		    \draw (START) -- ++(0,-1.5) -- ++(1,0) coordinate (A);
+			\draw[-latex] (A) -- ++(0,0.5) coordinate (B);
+			\draw ([xshift=-0.3cm]B) node[above right = 4pt] {$R$} rectangle ([shift={(0.3,0.2)}]B) coordinate (C);
+			\coordinate (R) at ([yshift=-0.1cm]C);
+			\draw (R)  to[ampermeter] ({D|-R}) -- (D);
+    \end{tikzpicture}
+\caption{До задачі~\ref{prb:current_ampermeter}}
+\label{current_ampermeter}
+\end{figure}
+%---------------------------------------------------------
+
+%=========================================================
+\begin{problem}\label{prb:LCL}% ФЛФ 22.2
+Знайдіть струм в колі, яке зображене на рис.~\ref{LCL}, якщо ЕРС джерела змінюється за законом $\EMF = \EMF_0\cos\omega t$. Чому буде дорівнювати струм, якщо котушки матимуть взаємну індуктивність $M$?
+\begin{solution}
+	$I = \EMF_0\frac{1 - \omega^2CL}{\omega L(2 - \omega^2CL)}\sin\omega t$, $I = \EMF_0\frac{1 - \omega^2CL}{\omega(2 - \omega^2CL)}\sin\omega t$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:RCRL}% ФЛФ 22.8
+В колі, зображеному на рис.~\ref{RCRL}, діє джерело змінної ЕРС  $\EMF = \EMF_0\cos\omega t$. При яких умовах струм в колі не залежить від частоти? Знайдіть різницю фаз між ЕРС та напругою на кінцях $RC$-пари за цих умов.
+\begin{solution}
+	$RC = \nfrac{L}{R}$, $\tg\phi = \frac{\omega L}{R}$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:LCLcircuit}
+Знайти умову, при якій в схемі рис.~\ref{LCLcircuit} струм, що протікає через деяке навантаження $Z$, не буде залежати від нього.
+\begin{solution}
+	$\omega^2LC = 1$.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{figure}[h!]\centering
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.3\linewidth}\centering
+		\begin{tikzpicture}
+			\draw (0,-2) coordinate (START) to [ac source={rotate=-90,info={left:$\EMF$}}] (0,2) -- ++(2,0) to [inductor={info={$L$}}] ++(0,-2) node [contact] (A) {};
+			\draw (A) -- ++(-0.5,0) to [capacitor={info'={$C$}}] ++(0,-1) -- ++(0.5,0) node [contact] (B) {}
+			(A) -- ++(0.5,0)  to [inductor={info={$L$}}] ++(0,-1) -- (B) -- +(0,-1) -- (START);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:LCL}}
+		\label{LCL}
+	\end{minipage}
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.3\linewidth}\centering
+		\begin{tikzpicture}
+			\draw (0,-2) coordinate (START) to [ac source={rotate=-90,info={left:$\EMF$}}] (0,2) -- ++(2,0) -- +(0,-0.3) node [contact] (C) {};
+			\draw (C) -- ++(-0.5,0) to [resistor={info'={$R$}}] ++(0,-1.5) -- ++(0.5,0) node [contact] (D) {}
+			(C) -- ++(0.5,0)  to [capacitor={info={$C$}}] ++(0,-1.5) -- (D) -- +(0,-0.4) node [contact] (E) {} ;
+			\draw (E) -- ++(-0.5,0) to [resistor={info'={$R$}}] ++(0,-1.5) -- ++(0.5,0) node [contact] (B) {}
+			(E) -- ++(0.5,0)  to [inductor={info={$L$}}]  ++(0,-1.5) -- (B) -- ({B|-START}) -- (START);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:RCRL}}
+		\label{RCRL}
+	\end{minipage}
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.3\linewidth}\centering
+		\begin{tikzpicture}
+			\draw (0,-2) coordinate (START) to [ac source={rotate=-90,info={left:$\EMF$}}] (0,2) -- ++(2,0) to [inductor={info={$L$}}] ++(0,-2) node [contact] (A) {};
+			\draw (A) -- ++(-0.5,0) to [capacitor={info'={$C$}}] ++(0,-1.5) -- ++(0.5,0) node [contact] (B) {}
+			(A) -- ++(0.5,0)  to [resistor={info={$Z$}}] ++(0,-1.5) -- (B) -- +(0,-0.5) -- (START);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:LCLcircuit}}
+		\label{LCLcircuit}
+	\end{minipage}
+	%---------------------------------------------------------
+\end{figure}
+%=========================================================
+
+%=========================================================
+\begin{problem}\label{prb:KRS3.249}
+В колі, зображеному на рис.~\ref{KRS3.249}, діє змінна ЕРС $\EMF = \EMF_0\cos^2\omega t$. Визначити струми $I_1$ та $I$, якщо параметри кола задовольняють співвідношенню $\omega^2 = \frac{1}{4LC}$.
+\begin{solution}
+	$I_1 = \frac{\EMF_0}{R}\cos 2\omega t$, $I_1 = \frac{\EMF_0}{2(R + R_1)}$.
+\end{solution}
+\end{problem}
+
+\begin{problem}\label{prb:filcontr}
+Параметри $R$ і $C$ схеми (рис.~~\ref{filcontr}) задані. При якій частоті $\omega$ вихідна напруга $V_\text{out}$ буде знаходиться в фазі із вхідною напругою $V_\text{in}$? Яким при цьому буде відношення амплітуди напруг $V_\text{out}$ та $V_\text{in}$?
+\end{problem}
+
+%=========================================================
+\begin{figure}[h!]\centering
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\draw
+			(0,0) node (A) [ocontact] {} to [capacitor={info={$C$}}] (0.7,0) to [resistor={info={$R$}}] (2.5,0) node (B) [contact] {} -- (4,0) node [ocontact] {}
+			(0,-2) node (A1) [ocontact] {} -- +(2.5,0) node (B1) [contact] {} -- +(4,0)  node [ocontact] {}
+			(B) to [resistor={info'={$R$}}] (B1)
+			(3.5,0) node (D1) [contact] {} to [capacitor={info'={$C$}}] +(0,-2) node (D2) [contact] {}
+			;
+			\node at (0,-1) {$V_\text{in}$};
+			\node at (4.5,-1) {$V_\text{out}$};
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:filcontr}}
+		\label{filcontr}
+	\end{minipage}
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\draw (0,-1.5) coordinate (START) to [ac source={rotate=-90,info={left:$\EMF$}}] (0,1.5) to [resistor={info'={$R$}}] ++(2,0) node [contact] (A) {}  to [resistor={info={$R_1$}}] ++(0,-1.5) to [inductor={info={$L_1$}}] ++(0,-1.5) node [contact] (B) {} -- (START)
+			(A) -- ++(2,0) to [inductor={info'={$L$}}] ++(0,-1.5) to [resistor={info'={$R$}}] ++(0,-1.5) -- (B)
+			;
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:KRS3.249}}
+		\label{KRS3.249}
+	\end{minipage}
+	%---------------------------------------------------------
+\end{figure}
+%=========================================================
+
+\subsection*{Мостові схеми в колах змінного струму}
+%=========================================================
+\begin{problem}\label{prb:KRS3.242}
+При якому співвідношенні між параметрами моста, зображеного на рис.~\ref{KRS3.242}, напруга на його виході знаходиться в фазі з вхідною напругою $V = V_0\cos\omega t$. Визначити при цьому амплітуду напруги на виході.
+\begin{solution}
+	$\omega L = R$, $V_{out} = V_{in} \left( \frac13 - \frac{R_1}{R_1 + R_2}\right) $.
+\end{solution}
+\end{problem}
+
+%=========================================================
+\begin{problem}\label{prb:KRS3.244}
+Знайти умови,  при яких міст зображений на рис.~\ref{KRS3.244}, буде збалансований (тобто $V_{\mathrm{out}} = 0$ при подачі на його
+вхід періодичної напруги $V_{\mathrm{in}}(t)$ будь-якої форми.
+\begin{solution}
+	$R_1C = RC_1$.
+\end{solution}
+\end{problem}
+
+
+%=========================================================
+\begin{figure}[h!]\centering
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\draw (0,2) node [ocontact]  {}  -- (4,2) node [contact] (A) {}
+			to [resistor={info'={$R$}}, label distance = -5pt] ++(-1,-1) to [inductor={info={$L$}, rotate=180}, label distance = -5pt] ++(-1,-1) coordinate (B)
+			-- ++(0.5,-0.5) coordinate (A1) {} -- ++(45:0.5) --  ++(-45:0) to [resistor={info'={$R$}}] ++ (-45:1.5) -- ++ (-135:0.5)  coordinate (B1) -- (4,-2) node [contact] (C) {}
+
+			(A1) -- ++(-135:0.5) to [inductor={info'={$L$}}] ++(-45:1.5) -- (B1)
+
+			(C) to [resistor={info'={$R_2$}}] ++(2,2) coordinate (D)
+			to [resistor={info'={$R_1$}}] ++(-2,2)
+			(C) -- +(-4,0) node [ocontact] {}
+			(B) -- +(1.5,0) node [ocontact] {}
+			(D) -- +(-1.5,0) node [ocontact] {}
+			;
+			\draw (-0.25,0) sin +(.1,.1) cos ++(.1,-0.1) sin ++(.1,-0.1) cos ++(.1,0.1);
+			\draw ([xshift=1.8cm]B) sin +(.1,.1) cos ++(.1,-0.1) sin ++(.1,-0.1) cos ++(.1,0.1);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:KRS3.242}}
+		\label{KRS3.242}
+	\end{minipage}
+	%---------------------------------------------------------
+	\begin{minipage}[t]{0.45\linewidth}\centering
+		\begin{tikzpicture}
+			\node [contact] (A) at (4,2) {};
+			\node [contact] (C) at (4,-2) {};
+			\coordinate (B) at (2,0);
+			\coordinate (D) at (6,0);
+			\draw (0,2) node [ocontact]  {}  -- (A) {}
+			to [resistor={info'={$R$}}, label distance = -5pt] ++(-1,-1) to [capacitor={info={$C$}, rotate=180}, label distance = -5pt] (B)
+
+			(B) to [resistor={info'={$R_1$}}] (C)
+
+			(C) -- ++(45:0.6) coordinate (A1) -- ++(135:0.5)  to [capacitor={info'={$C$}}] ++(45:1.5) -- ++(-45:0.5) coordinate (B1) -- (D)
+
+			(A1) --  ++(-45:0.5) to [resistor={info'={$R$}}] ++(45:1.5) -- (B1)
+
+			(D) to [capacitor={info'={$C_1$}}] ++(-2,2)
+			(C) -- +(-4,0) node [ocontact] {}
+			(B) -- +(1.5,0) node [ocontact] {}
+			(D) -- +(-1.5,0) node [ocontact] {}
+			;
+			\draw (-0.25,0) sin +(.1,.1) cos ++(.1,-0.1) sin ++(.1,-0.1) cos ++(.1,0.1);
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:KRS3.244}}
+		\label{KRS3.244}
+	\end{minipage}
+	%---------------------------------------------------------
+\end{figure}
+%=========================================================
+
+%=========================================================
+\begin{problem}
+    До джерела із діючим значенням напруги $U = 100$~В приєднали реальну котушку, імпеданс якої $Z = 50$~Ом, а індуктивний опір $X_L = 30$~Ом. Яка потужність виділятиметься в колі. Знайдіть зсув фаз між струмом та напругою. 
+\begin{solution}
+	$P = 160$~Вт, $\phi \approx 37^\circ$.
+\end{solution}
+\end{problem}
+
+
+%========================================================= 
+\begin{problem}\label{prb:Infinite_chain_impedance}
+Знайдіть імпеданс нескінченного кола, показаного на рис.~\ref{Infinite_chain_impedance}. Розгляньте випадок коли $Z_1 = i\omega L$, $Z_2 = \frac{1}{i\omega C}$, за яких частот коло не буде споживати потужність від джерела?
+\begin{solution}
+	Імпеданс кола $Z = \sqrt{\left( \frac{Z_1}{2}\right)^2 + Z_1Z_2}$.
+	$Z = \sqrt{\frac{L}{C} - \frac{\omega^2L^2}{4}}$. При $\omega > \nfrac{2}{\sqrt{LC}}$.
+\end{solution}
+\end{problem}
+%---------------------------------------------------------
+\begin{figure}[h!]\centering
+		\begin{tikzpicture}
+			\draw (0,0) node[ocontact] {} to [resistor={info={$Z_1/2$}}] (2,0) node[contact] (A1) {} to [resistor={info={$Z_1$}}] (4,0) node[contact] (A2) {}  to [resistor={info={$Z_1$}}] (6,0) node[contact] (A3) {};
+			\draw (0,-2) node[ocontact] {} -- (2,-2) node[contact] (B1) {} -- (4,-2) node[contact] (B2) {} -- (6,-2) node[contact] (B3) {};
+			\draw (A1) to [resistor={info={$Z_2$}}] (B1) (A2) to [resistor={info={$Z_2$}}] (B2) (A3) to [resistor={info={$Z_2$}}] (B3);
+			\draw [dashed] (A3) -- (7.5,0)
+			(B3) -- (7.5,-2);
+			\node[left] at (0,0) {$A$};
+			\node[left] at (0,-2) {$B$};
+			\node[] at (7.5,-1) {$\infty$};
+		\end{tikzpicture}
+		\caption{До задачі~\ref{prb:Infinite_chain_impedance}}
+		\label{Infinite_chain_impedance}
+\end{figure}
+%---------------------------------------------------------
+
+%=========================================================
+\begin{problem}
+    Знайти силу взаємодії на одиницю довжини між паралельними провідниками, по яким течуть гармонічні струми  амплітудами $I_1$ та $I_2$ зі зсувом фаз $\phi$, що знаходяться на відстані $r$ один від одного.
+\begin{solution}
+	$F = \frac{2I_1I_2}{2cr}\cos\phi$.
+\end{solution}
+\end{problem}
+
+
+\subsection*{Електричні фільтри}
+
+%=========================================================
+\begin{problem}\label{prb:AxFilters}
+Знайти частоти пропускання фільтрів, зображених на рис.~\ref{Ax1}, \ref{Ax2} та ~\ref{Ax3}.
+\begin{solution}
+	\begin{enumerate*}[label=\alph*)]
+		\item $\omega \le \sqrt{\frac{2}{LC}}$,
+		\item $\omega \ge \sqrt{\frac{1}{2LC}}$,
+		\item $\Omega_2 < \omega < \Omega_1$, де $\Omega_1^2 = \nfrac{1}{LC} $, $\Omega_2^2 = \frac15 \left( \Omega_1^2 + 4\Omega^2\right)  $, $\Omega = \nfrac{1}{4LC}$.
+	\end{enumerate*}
+\end{solution}
+\end{problem}
+%---------------------------------------------------------
+\begin{figure}[h!]\centering
+	\subfloat[\label{Ax1}]{
+		\begin{tikzpicture}
+			\draw
+			(0,0) node (A) [ocontact] {} to [inductor={info={$L$}}] (2,0) node (B) [contact] {} to [inductor={info={$L$}}] (4,0) node [ocontact] {}
+			(0,-2) node (A1) [ocontact] {} -- +(2,0) node (B1) [contact] {} -- +(4,0)  node [ocontact] {}
+			(B) to [capacitor={info={$C$}}] (B1);
+		\end{tikzpicture}
+	}
+	\qquad
+	\subfloat[\label{Ax2}]{
+		\begin{tikzpicture}
+			\draw
+			(0,0) node (A) [ocontact] {} to [capacitor={info={$C$}}] (2,0) node (B) [contact] {} to [capacitor={info={$C$}}] (4,0) node [ocontact] {}
+			(0,-2) node (A1) [ocontact] {} -- +(2,0) node (B1) [contact] {} -- +(4,0)  node [ocontact] {}
+			(B) to [inductor={info={$L$}}] (B1);
+		\end{tikzpicture}
+	}
+	\qquad
+	\subfloat[\label{Ax3}]{
+		\begin{tikzpicture}
+			\draw
+			(0,0) node (A) [ocontact] {} to [inductor={info={$L$}}] (1,0) to [capacitor={info={$C$}}] (2,0) node (B) [contact] {} to [capacitor={info={$C$}}] (3,0) to [inductor={info={$L$}}] (4,0)node [ocontact] {}
+			(0,-2) node (A1) [ocontact] {} -- +(2,0) node (B1) [contact] {} -- +(4,0)  node [ocontact] {}
+			(B) to [inductor={info={$2L$}}] ([yshift=-1cm]B) to [capacitor={info={$2C$}}] (B1);
+		\end{tikzpicture}
+	}
+	\caption{До задачі~\ref{prb:AxFilters}}
+\end{figure}
+%---------------------------------------------------------
+
+%=========================================================
+%\begin{problem}\label{prb:Irodov3.147}
+%    На рис.~\ref{Irodov3.147} зображено найпростішу схему фільтра. На вхід подається змінна напруга $V_{\mathrm{in}} = V_0(1 + \cos\omega t)$. Знайти 
+%    \begin{enumerate*}[label=\alph*)]
+%        \item вихідну напругу;
+%        \item значення $RC$, при якому амплітуда змінної складової напруги на виході буде в $7$ разів менша за сталу складову, якщо частота $314$~с$^{-1}$.
+%    \end{enumerate*}
+%    Які частоти відсікає цей фільтр: низькі чи високі?
+%    %---------------------------------------------------------
+%    \begin{figure}[h!]\centering
+%        \begin{tikzpicture}
+%            \draw
+%                 (0,0) node (A) [ocontact] {} to [resistor={info={$R$}}] +(2,0) node (B) [contact] {} -- +(4,0) node [ocontact] {}
+%                 (0,-2) node (A1) [ocontact] {} -- +(2,0) node (B1) [contact] {} -- +(4,0)  node [ocontact] {}
+%                 (B) to [capacitor={info={$C$}}] (B1);
+%                 \node at (0,-1){$V$};
+%        \end{tikzpicture}
+%    \caption{До задачі~\ref{prb:Irodov3.147}}
+%    \label{Irodov3.147}
+%    \end{figure}
+%    %---------------------------------------------------------
+%\begin{solution}
+%\begin{enumerate*}[label=\alph*)]
+%    \item $V_{\mathrm{out}} = V_0\left( 1 + \frac{1}{\sqrt{1 + (\omega RC)^2}}\right)\cos(\omega t - \phi) $, $\tg\phi = \omega RC$,
+%    \item $RC \approx 22$~мс.
+%\end{enumerate*} 
+%\end{solution}
+%\end{problem}
+
+\Closesolutionfile{answer}
+
