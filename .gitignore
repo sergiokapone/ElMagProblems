@@ -3,6 +3,7 @@
 *.out
 *.bbl
 *.bcf
+*.blg
 *.thm
 *.synctex.gz
 /!Save
