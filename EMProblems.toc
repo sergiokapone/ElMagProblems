@@ -30,35 +30,35 @@
 \contentsline {section}{\numberline {\S \hspace \@spase 4.1. }Закон Фарадея}{82}{section.671}%
 \contentsline {section}{\numberline {\S \hspace \@spase 4.2. }Надпровідники у магнітному полі}{89}{section.729}%
 \contentsline {section}{\numberline {\S \hspace \@spase 4.3. }Рівняння Максвелла. Вектор Пойнтінга}{91}{section.744}%
-\contentsline {chapter}{Розділ~\numberline {5.~}Рух частинок в електромагнітному полі}{97}{chapter.789}%
+\contentsline {chapter}{Розділ~\numberline {5.~}Рух заряду в електромагнітному полі}{97}{chapter.789}%
 \contentsline {section}{\numberline {\S \hspace \@spase 5.1. }Рух заряду електричному полі}{97}{section.790}%
-\contentsline {section}{\numberline {\S \hspace \@spase 5.2. }Рух заряду в магнітному полі}{98}{section.797}%
-\contentsline {section}{\numberline {\S \hspace \@spase 5.3. }Рух заряду в електричному та магнітному полях}{98}{section.802}%
-\contentsline {chapter}{Розділ~\numberline {6.~}Релятивіствька електродинаміка}{102}{chapter.819}%
-\contentsline {section}{\numberline {\S \hspace \@spase 6.1. }Перетворення електричних та магнітних полів}{102}{section.820}%
-\contentsline {chapter}{Розділ~\numberline {7.~}Квазістаціонарні струми в електричних колах}{104}{chapter.833}%
-\contentsline {section}{\numberline {\S \hspace \@spase 7.1. }Перехідні процеси в електричних колах}{104}{section.834}%
-\contentsline {section}{\numberline {\S \hspace \@spase 7.2. }Вільні коливання в електричних колах}{105}{section.841}%
-\contentsline {section}{\numberline {\S \hspace \@spase 7.3. }Вимушені коливання в електричних колах. Резонанс}{106}{section.851}%
-\contentsline {chapter}{Відповіді}{112}{chapter*.898}%
-\contentsline {chapter}{Додатки}{148}{appendix*.988}%
+\contentsline {section}{\numberline {\S \hspace \@spase 5.2. }Рух заряду в магнітному полі}{98}{section.801}%
+\contentsline {section}{\numberline {\S \hspace \@spase 5.3. }Рух заряду в електричному та магнітному полях}{99}{section.809}%
+\contentsline {chapter}{Розділ~\numberline {6.~}Релятивіствька електродинаміка}{103}{chapter.826}%
+\contentsline {section}{\numberline {\S \hspace \@spase 6.1. }Перетворення електричних та магнітних полів}{103}{section.827}%
+\contentsline {chapter}{Розділ~\numberline {7.~}Квазістаціонарні струми в електричних колах}{105}{chapter.840}%
+\contentsline {section}{\numberline {\S \hspace \@spase 7.1. }Перехідні процеси в електричних колах}{105}{section.841}%
+\contentsline {section}{\numberline {\S \hspace \@spase 7.2. }Вільні коливання в електричних колах}{106}{section.848}%
+\contentsline {section}{\numberline {\S \hspace \@spase 7.3. }Вимушені коливання в електричних колах. Резонанс}{107}{section.858}%
+\contentsline {chapter}{Відповіді}{113}{chapter*.905}%
+\contentsline {chapter}{Додатки}{149}{appendix*.995}%
 \setlength \@sectoctitle@len {71.65439pt}
-\contentsline {section}{\numberline {Додаток\hspace \@spase А. }Основні формули векторного аналізу}{148}{section.989}%
-\contentsline {subsection}{\numberline {А.1}Диференціальні оператори}{148}{subsection.990}%
-\contentsline {subsection}{\numberline {А.2}Диференціальні операції в різних системах координат}{148}{subsection.995}%
-\contentsline {subsubsection}{Декартова система координат}{148}{section*.996}%
-\contentsline {subsubsection}{Циліндрична система координат}{149}{section*.1001}%
-\contentsline {subsubsection}{Сферична система координат}{149}{section*.1006}%
-\contentsline {subsection}{\numberline {А.3}Другі похідні}{149}{subsection.1011}%
-\contentsline {subsection}{\numberline {А.4}Похідні від добутків}{149}{subsection.1015}%
-\contentsline {subsection}{\numberline {А.5}Інтегральні характеристики та теореми}{150}{subsection.1023}%
+\contentsline {section}{\numberline {Додаток\hspace \@spase А. }Основні формули векторного аналізу}{149}{section.996}%
+\contentsline {subsection}{\numberline {А.1}Диференціальні оператори}{149}{subsection.997}%
+\contentsline {subsection}{\numberline {А.2}Диференціальні операції в різних системах координат}{149}{subsection.1002}%
+\contentsline {subsubsection}{Декартова система координат}{149}{section*.1003}%
+\contentsline {subsubsection}{Циліндрична система координат}{150}{section*.1008}%
+\contentsline {subsubsection}{Сферична система координат}{150}{section*.1013}%
+\contentsline {subsection}{\numberline {А.3}Другі похідні}{150}{subsection.1018}%
+\contentsline {subsection}{\numberline {А.4}Похідні від добутків}{150}{subsection.1022}%
+\contentsline {subsection}{\numberline {А.5}Інтегральні характеристики та теореми}{151}{subsection.1030}%
 \setlength \@sectoctitle@len {70.1856pt}
-\contentsline {section}{\numberline {Додаток\hspace \@spase Б. }Системи одиниць в електродинаміці}{151}{section.1029}%
+\contentsline {section}{\numberline {Додаток\hspace \@spase Б. }Системи одиниць в електродинаміці}{152}{section.1036}%
 \setlength \@sectoctitle@len {70.76158pt}
-\contentsline {section}{\numberline {Додаток\hspace \@spase В. }Сфери в елетричному та магнітному полях}{153}{section.1032}%
+\contentsline {section}{\numberline {Додаток\hspace \@spase В. }Сфери в елетричному та магнітному полях}{154}{section.1039}%
 \setlength \@sectoctitle@len {69.60959pt}
-\contentsline {section}{\numberline {Додаток\hspace \@spase Г. }Фізичні константи}{157}{section.1039}%
-\contentsline {chapter}{Література}{158}{appendix*.1042}%
+\contentsline {section}{\numberline {Додаток\hspace \@spase Г. }Фізичні константи}{158}{section.1046}%
+\contentsline {chapter}{Література}{159}{appendix*.1049}%
 \babel@toc {russian}{}\relax 
 \babel@toc {ukrainian}{}\relax 
 \babel@toc {russian}{}\relax 
