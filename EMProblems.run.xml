@@ -55,7 +55,6 @@
       <file>gost-numeric.dbx</file>
       <file>blx-unicode.def</file>
       <file>blx-compat.def</file>
-      <file>blx-case-expl3.def</file>
       <file>biblatex.def</file>
       <file>biblatex-gost.def</file>
       <file>gost-standard.bbx</file>
@@ -88,7 +87,7 @@
       <file>EMProblems.bcf</file>
     </requires>
     <requires type="editable">
-      <file>e:/Projects/LaTeX/MyPackage/MyBase.bib</file>
+      <file>d:/Projects/LaTeX/MyPackage/MyBase.bib</file>
     </requires>
   </external>
 </requests>

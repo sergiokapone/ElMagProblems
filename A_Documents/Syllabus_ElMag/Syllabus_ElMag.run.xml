@@ -87,7 +87,7 @@
       <file>Syllabus_ElMag.bcf</file>
     </requires>
     <requires type="editable">
-      <file>e:/Projects/LaTeX/MyPackage/MyBase.bib</file>
+      <file>d:/Projects/LaTeX/MyPackage/MyBase.bib</file>
     </requires>
   </external>
 </requests>
