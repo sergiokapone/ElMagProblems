@@ -17,7 +17,7 @@
 
 %=================================== Бібліографія  =============================
 %
-\addbibresource{d:/Projects/LaTeX/MyPackage/MyBase.bib}
+\addbibresource{d:/Projects/LaTeX/MyPackages/bib/MyBase.bib}
 %\addbibresource{Kvant.bib}
 %
 %===============================================================================
@@ -91,40 +91,10 @@
 %===============================================================================
 \clearpage\bibliographytrue\phantomsection\label{BibPage}
 
-\nocite{%
-	AleshkevichElectro,
-	AxiezerGeneralPhysElectro,
-	AxiezerElectromagnetizm,
-	Siv3,
-	berkeley2,
-	FLF5,
-	FLF6,
-	FLF7,
-	Mat3,
-	Sav2,
-	Smajt,
-	ZilbermanElectro,
-	Tamm,
-	Kalashnikov,
-	Jackson,
-	Meshkov1,
-	%Meshkov2,
-	PennerUgarov,
-	ParnovskyElectro,
-	Ivanenko,
-	SivP3,
-	Ovchinkin2,
-	ZilbermanZadachi,
-	FLFP,
-	IrodovProblems,
-    VonsovskyMagnetizm,
-	Mironova,
-}
-
 \printbibheading
 \defbibheading{subbibliography}[\bibname]{\section*{#1}}
 \printbibliography[category=Textbooks, heading=subbibliography, title={Підручники та посібники}]
-\addtocategory{Textbooks}{%
+\addtocategoryNoCi{Textbooks}{%
 	AleshkevichElectro,
 	AlekseevElectro,
 	AxiezerGeneralPhysElectro,
@@ -148,7 +118,7 @@
 	VonsovskyMagnetizm}
 
 \printbibliography[category=Problems, heading=subbibliography, title={Задачники}]
-\addtocategory{Problems}{%
+\addtocategoryNoCi{Problems}{%
 	SivP3,
 	Ovchinkin2,
 	ZilbermanZadachi,

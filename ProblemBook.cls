@@ -1,11 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesClass{ProblemBook}[2018/01/21]
 \LoadClass[onecolumn, twoside, 14pt]{extbook}
-%===============================================================================
+%========================================================================================================
 %
 %										Налаштування опцій класу
 %
-%===============================================================================
+%========================================================================================================
 \newif\ifelectronic
 \newif\ifbiblatex
 \newif\ifmarginversioninfo
@@ -37,28 +37,28 @@
 \ProcessOptions\relax
 \defcolor{}
 
-%===============================================================================
+%========================================================================================================
 %
-%							Геометрія сторінки
+%										Геометрія сторінки
 %
-%===============================================================================
+%========================================================================================================
 \newlength{\topspace}
 \setlength{\topspace}{2cm}
 \RequirePackage[%
 	a4paper,%
 	footskip=1cm,%
-	headsep=0.3cm,%
-	top=\topspace, %поле сверху
+	headsep=1cm,%
+	top=2cm, %поле сверху
 	bottom=2cm, %поле снизу
 	left=2cm, %поле ліворуч
 	right=2cm, %поле праворуч
 ]{geometry}
 
-%===============================================================================
+%========================================================================================================
 %
-%							Налаштування мови та компіляторів
+%										Налаштування мови та компіляторів
 %
-%===============================================================================
+%========================================================================================================
 
 \RequirePackage{ifluatex,ifxetex}
 \newif\ifxetexorluatex
@@ -74,11 +74,12 @@
 \ifxetexorluatex
 	\RequirePackage{fontspec}
 	\setsansfont{CMU Sans Serif}%{Arial}
-	\setmainfont{stix}%{alegreya}%{CMU Serif}%{Times New Roman}
+	\setmainfont{stix}%{CMU Serif}%{Times New Roman}
 	\setmonofont{CMU Typewriter Text}%{Consolas}
 	\defaultfontfeatures{Ligatures={TeX}}
 	\newfontfamily\Annabelle{Annabelle}
 	\RequirePackage{luacolor}
+	\usepackage{luatexbase} % TexLive2018 bug
 \else
 	\RequirePackage[T2A,T1]{fontenc}
 	\RequirePackage[utf8]{inputenc}
@@ -90,12 +91,14 @@
 	\renewcommand{\bfdefault}{b}
 \fi
 \RequirePackage[english,russian,ukrainian]{babel}
+\RequirePackage[]{datetime}
 
-%===============================================================================
+
+%========================================================================================================
 %
 %										Логічні змінні
 %
-%===============================================================================
+%========================================================================================================
 
 \newif\ifappendix
 \newif\ifanswers
@@ -103,11 +106,11 @@
 \newif\ifbibliography
 \newif\ifintro
 
-%===============================================================================
+%========================================================================================================
 %
-%							Налаштування типографських вимог
+%										Налаштування типографських вимог
 %
-%===============================================================================
+%========================================================================================================
 
 \RequirePackage{microtype}
 %\RequirePackage[nosingleletter, hyphenation, lastparline]{impnattypo}
@@ -121,11 +124,11 @@
 \let\@texttop\relax
 %\setlength{\emergencystretch}{1em}
 
-%===============================================================================
+%========================================================================================================
 %
 %										Кольори
 %
-%===============================================================================
+%========================================================================================================
 
 \definecolor{malina}{RGB}{153,0.0,0.0}
 %\definecolor{lighbluecolor}{RGB}{0,163,243}
@@ -138,30 +141,32 @@
 \definecolor{titlebgdark}{RGB}{0,103,102}
 \definecolor{titlebglight}{RGB}{191,233,251}
 
-%===============================================================================
+%========================================================================================================
 %
 %										Пакети
 %
-%===============================================================================
+%========================================================================================================
 
 \RequirePackage[overload]{textcase}
 \let\MakeUppercase\MakeTextUppercase
 \RequirePackage{indentfirst}
-% ------------------------------------ Плаваючі об'єкти ------------------------
+% ------------------------------------ Плаваючі об'єкти -------------------------------------------------
 \RequirePackage{subfig}
 \renewcommand\thesubfigure{\alph{subfigure}}
 \RequirePackage{wrapfig}
-% ------------------------------------ Таблиці ---------------------------------
+% ------------------------------------ Таблиці ----------------------------------------------------------
 \usepackage{colortbl}
 \usepackage{makecell}
 \usepackage{longtable}
 \usepackage{array,ragged2e}
 \setlength\arrayrulewidth{1pt}
-% ------------------------------------ Математика ------------------------------
+% ------------------------------------ Математика -------------------------------------------------------
 \ifluatex
 %	\RequirePackage{lualatex-math}
+	\RequirePackage{amsmath}
 	\RequirePackage[math-style=TeX,bold-style=TeX]{unicode-math}
-	\setmathfont[]{Stix Two Math}
+	\setmathfont[math-style=TeX]{Stix Two Math}
+
 \else
 	\RequirePackage{amsfonts}
 	\RequirePackage{amssymb}
@@ -170,7 +175,7 @@
 \RequirePackage{nicefrac}
 \let\nfrac\nicefrac
 \allowdisplaybreaks
-% ------------------------- Визначення математичних команд ---------------------
+% -------------------------------- Визначення математичних команд -----------------------------------
 \def\EMF{\mathcal{E}}
 \newcommand{\vect}[1]{\symbf{#1}}
 \def\Efield{\vect{E}}          % --- Визначення вектора електричного поля            ---
@@ -180,15 +185,20 @@
 \def\rot{\symbf{\nabla}\times} % --- Визначення ротора                               ---
 \def\divg{\symbf{\nabla}\cdot} % --- Визначення дівергенції                          ---
 \AtBeginDocument{%
-	\let\phi\varphi
+    \let\pot\phi
+    \let\phi\varphi
 	\let\epsilon\varepsilon
 	\DeclareMathOperator{\const}{const}
 	\DeclareMathOperator{\inv}{inv}
 	\newcommand{\Laplasian}{\Delta}
+	\let\epsilon\varepsilon
+	\DeclareMathOperator{\Div}{div}
+	\DeclareMathOperator{\Rot}{rot}
+    \DeclareMathOperator{\Grad}{grad}
 }
 
-\RequirePackage{mhchem, chemfig}
-% ------------------------- Таблиці --------------------------------------------
+\RequirePackage[version=4]{mhchem}
+% ---------------------------------------- Таблиці ------------------------------------------------------
 \RequirePackage{booktabs}
 \RequirePackage{tabularx}
 \newcolumntype{R}{>{\footnotesize}r}
@@ -204,25 +214,28 @@
 \setlength{\extrarowheight}{0.75ex}
 \RequirePackage[justification=centering,labelsep=period]{caption}
 \RequirePackage{multirow}
-% ---------------------------- Фалові операції ---------------------------------
+\RequirePackage{subcaption}
+% ------------------------------------- Фалові операції -------------------------------------------------
 \RequirePackage{currfile}
-% ---------------------------- Пакети LaTeX3 -----------------------------------
+% ------------------------------------- Пакети LaTeX3 ---------------------------------------------------
 \RequirePackage{xparse}
-% --------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------------------------
 \RequirePackage{epigraph}
-\setlength\epigraphwidth{.8\textwidth}
+\setlength\epigraphwidth{0.7\textwidth}
 \setlength\epigraphrule{0pt}
 \renewcommand{\textflush}{flushepinormal}
-\RequirePackage{lastpage}
+\RequirePackage{refcount}
+\RequirePackage[pagecontinue]{pageslts}
+\pagenumbering{arabic}
 \RequirePackage[disable]{todonotes}
 \RequirePackage{pdftexcmds}
 \RequirePackage[most, many]{tcolorbox}
 
-%===============================================================================
+%========================================================================================================
 %
 %										Рисування
 %
-%===============================================================================
+%========================================================================================================
 
 \RequirePackage{tikz, pgfplots, tikz-3dplot}
 %---------------------------------------------------
@@ -250,7 +263,7 @@
 			insert path={+ (#1:#3) arc (#1:#2:#3)}
 		}
 }
-% --------------------------- Електричні кола ----------------------------------
+% -------------------------------------- Електричні кола ------------------------------------------------
 \usetikzlibrary{circuits.ee.IEC}
 \tikzset{circuit ee IEC,
 	every info/.style=red,
@@ -287,52 +300,16 @@
 		}
 }
 
-% ---------------------------- Паттерни ----------------------------------------
+% -------------------------------------- Паттерни -------------------------------------------------------
 \usetikzlibrary{patterns}
 \tikzstyle{ground}=[fill,pattern=north east lines,draw=none,minimum width=0.3,minimum height=0.6]
 
-%===============================================================================
-%
-%                             Друк версії документу на полях
-%
-%===============================================================================
-\ifmarginversioninfo
-	% http://tex.stackexchange.com/questions/54808/rotated-running-text-in-right-margin
-	\RequirePackage[contents={},opacity=0.5,scale=1.5,color=gray]{background}
-	\newcommand\Texta{\bf\large Версія від \today} % odd page
-	\newcommand\Textb{\bf\large Версія від \today} % even pages
-	%-----------------------------------------
-	\AddEverypageHook{%
-		\ifodd\value{page}
-			\backgroundsetup{
-				angle=90,
-				position={-0.06\textwidth,-0.35\textheight},
-				contents={\Texta}
-			}%
-		\else
-			%-----------------------------------------
-			\backgroundsetup{
-				angle=90,
-				position={0.68\textwidth,-0.35\textheight},
-				contents={\Textb}
-			}%
-		\fi
-		\BgMaterial}
-\fi
 
-%===============================================================================
+%========================================================================================================
 %
-%							Інтервали
+%									      Налаштування для титульних сторінок
 %
-%===============================================================================
-\newlength{\@spase}
-\setlength{\@spase}{0.5ex} % space between \@sectiontitlemark and \thesection
-\newlength{\length@titlemark} % length of \@sectiontitlemark
-%===============================================================================
-%
-%						Налаштування для титульних сторінок
-%
-%===============================================================================
+%========================================================================================================
 
 \newenvironment{alwayssingle}{%
 	\thispagestyle{empty}
@@ -372,16 +349,21 @@
 \ExplSyntaxOff
 
 
-%===============================================================================
+%========================================================================================================
 %
-%								Рубрикація
+%										   Рубрикація
 %
-%===============================================================================
+%========================================================================================================
+
 \let\cleardoublepage\clearpage
-\def\@sectiontitlemark{\S}
-\newcommand{\@secnum@dot}{.}
-\newcommand{\@chapnum@dot}{.}
-% ----------------------------- Верстка ДОДАТКІВ -------------------------------
+
+\def\schapter#1{%
+\chapter*{#1}
+\addcontentsline{toc}{chapter}{#1}%
+}
+
+
+% ---------------------------------------- Верстка ДОДАТКІВ ---------------------------------------------
 
 \renewcommand\appendix{\par
 	\appendixtrue
@@ -392,7 +374,7 @@
 	\setcounter{chapter}{0}%
 	\setcounter{section}{0}%
 	\renewcommand{\theequation}{\thesection.\arabic{equation}}
-	\clearpage\pagestyle{main}
+	\clearpage\pagestyle{appendix}
 	\def\@sectiontitlemark{\appendixname}
 	\if@twocolumn
 		\@restonecoltrue\onecolumn
@@ -400,354 +382,121 @@
 		\@restonecolfalse
 	\fi
 	\chapter*{Додатки}%
+    \addcontentsline{toc}{chapter}{Додатки}
 	\if@restonecol\twocolumn\fi
 }
-% ------------------------------- Верстка ВІДПОВІДЕЙ ---------------------------
+% ------------------------------------- Верстка ВІДПОВІДЕЙ -------------------------------------------
 \newcommand\answers{\par
 	\answerstrue
 	\setcounter{chapter}{0}%
 	\setcounter{section}{0}%
 	\renewcommand{\thesection}{\arabic{section}}
-	\def\@sectiontitlemark{Відповіді до розділу}
-	\if@twocolumn
-		\@restonecoltrue\onecolumn
-	\else
-		\@restonecolfalse
-	\fi
+    \clearpage\pagestyle{answers}
 	\chapter*{Відповіді}%
+    \addcontentsline{toc}{chapter}{Відповіді}
+    \renewcommand{\theequation}{\arabic{equation}}
 	\if@restonecol\twocolumn\fi
 }
-% ------------------ Лічильник зносок починаються з кожної сторінки ------------
+% -------------------------------------- Лічильник зносок починаються з кожної сторінки ---------------
 \@newctr{footnote}[page]
-% ------------------------ Верстка ЗМІСТУ---------------------------------------
-\renewcommand\tableofcontents{%
-	\if@twocolumn
-		\@restonecoltrue\onecolumn
-	\else
-		\@restonecolfalse
-	\fi
-	\toctrue
-	\chapter*{\contentsname
-%		\@mkboth{%
-%			\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
-	}\hypertarget{tocpage}{}%
-	\@starttoc{toc}%
-	\if@restonecol\twocolumn\fi
-	\tocfalse
-}
-% ---------------------- Верстка ЗМІСТУ для Розділів ------------------------
 
-\renewcommand*\l@chapter[2]{%
-	\ifnum \c@tocdepth >\m@ne
-		\addpenalty{-\@highpenalty}%
-		\vskip 1.0em \@plus\p@
-		\setlength\@tempdima{1.5em}%
-		\begingroup
-		\parindent \z@ \rightskip \@pnumwidth
-		\parfillskip -\@pnumwidth
-		\leavevmode \bfseries
-		\advance\leftskip\@tempdima
-		\hskip -\leftskip
-		#1\leaders\hbox to .5em{\hss.\hss}\hfil \nobreak\hb@xt@\@pnumwidth{\hss  #2}\par
-		\penalty\@highpenalty%
-		\endgroup
-	\fi}
 
-% ----------------------- Верстка РОЗДІЛУ -------------------------------------
-\renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
-  \thispagestyle{chapterpage}%
-  \global\@topnum\z@
-  \@afterindentfalse
-  \secdef\@chapter\@schapter}
 
-\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne%     #1 -- скорочена назва розділу, #2 -- повна назва розділу
-		\if@mainmatter
-			\refstepcounter{chapter}%                         При виклику команди \chapter змінювати лічильник на одиницю
-			\addcontentsline{toc}{chapter}%
-			{\@chapapp~\protect\numberline{\thechapter\@chapnum@dot~}#1}% Додати в зміст "Друк Розділ 1. Назва розділу", #1 -- аргумент команди \chapter"
-		\else
-			\addcontentsline{toc}{chapter}{#1}%
-		\fi
-	\else
-		\addcontentsline{toc}{chapter}{#1}%
-	\fi
-	\chaptermark{#1}%                                 Додати "Назву розділу" для колонтитулів
-	\addtocontents{lot}{\protect\addvspace{10\p@}}%
-	\if@twocolumn
-		\@topnewpage[\@makechapterhead{#2}]%
-	\else
-		\@makechapterhead{#2}%                            Створити вигляд розділу
-		\@afterheading
-	\fi}
+\RequirePackage[pagestyles, explicit]{titlesec}
+\RequirePackage[dotinlabels]{titletoc}
 
-\def\@schapter#1{%                                    Аналогічно до команди \@chapter, але для версії з зірочкою
-	\if@twocolumn
-		\@topnewpage[\@makeschapterhead{#1}]%
-	\else
-		\@makeschapterhead{#1}%
-		\@afterheading
-	\fi
-	\chaptermark{#1}%
-	\iftoc\relax\else
-		\addcontentsline{toc}{chapter}{#1}
-	\fi
-}
+\newlength\chapnumb
+\setlength\chapnumb{4cm}
 
-\tcbset{%
-		chaptertitlestyle/.style={%
-				enhanced,
-				colback=white,
-				%boxrule=0.25cm,
-				colframe=themecolorlight,
-				arc=0pt,
-				outer arc=0pt,
-				leftrule=0pt,
-				rightrule=0pt,
-				fontupper=\sffamily\bfseries\LARGE,
-				enlarge left by=-1in-\hoffset-\oddsidemargin,
-				enlarge right by=-\paperwidth+1in+\hoffset+\oddsidemargin+\textwidth,
-				width=\paperwidth,
-				left=1in+\hoffset+\oddsidemargin,
-				right=\paperwidth-1in-\hoffset-\oddsidemargin-\textwidth,
-				top=0.7cm,
-				bottom=0.7cm,
-				halign = center,
-				frame hidden,
-		}%
-}%
+\titleformat{\part}[display]{\bfseries\sffamily\huge}{\partname\ \thepart }{0pt}{\addvspace{1em}\Huge\centering #1}
 
-\def\@makechapterhead#1{%
-	\vspace*{50\p@}%
-		\begin{tcolorbox}[%
-				chaptertitlestyle,
-				overlay={%
-						\draw[line width = 0.15cm, themecolorlight] (frame.north west) -- (frame.north east);
-						\draw[line width = 0.15cm, themecolorlight] (frame.south west) -- (frame.south east);
-						\node[%
-							fill=themecolordark,
-							draw=themecolorlight,
-							line width=0.15cm,
-							inner sep=0pt,
-							text width=2cm,
-							minimum height=2cm,
-							align=center,
-							anchor=east,
-							font=\color{white}\sffamily\bfseries\fontsize{40}{52}\selectfont
-						]%
-						(chapname)
-						at (frame.north east)
-						{\thechapter};
-						\node[font=\small,anchor=south,inner sep=2pt] at (chapname.north)
-						{\MakeTextUppercase{\sffamily\bfseries\@chapapp}};
-					}
-			]%
-			#1%
-		\end{tcolorbox}%
-		\nobreak%
-		\vskip 50\p@%
-	}%
+\titlecontents{part}%
+[0pt]{\sffamily\bfseries\large\protect\addvspace{25pt}\addvspace{1.5ex}}
+{}{\partname~}
+{\hfill\contentspage}%
+[\addvspace{0.7ex}\titlerule\addvspace{10pt}]%
 
-\def\@makeschapterhead#1{%
-	\vspace*{50\p@}%
-		\begin{tcolorbox}[chaptertitlestyle,
-				overlay={%
-						\draw[line width = 0.15cm, themecolorlight] (frame.south west) -- (frame.south east);
-						\draw[line width = 0.15cm, themecolorlight] (frame.north west) -- (frame.north east);
-					}]
-			#1
-		\end{tcolorbox}%
-		\nobreak%
-		\vskip 50\p@%
-	}%
+\titleclass{\part}{top}
+\newcommand\partbreak{\clearpage}
 
-% ----------------------- Верстка ЗМІСТУ для Секцій ----------------------------
-\newlength\@sectoctitle@len                                                           % Ширина мітки разом з номером для секції
-\newlength\@chaptoclabel@len\settowidth\@chaptoclabel@len{\@chapapp}                  % Ширина мітки для розділу
-\newlength\@sectiontitlemark@box\settowidth\@sectiontitlemark@box{\@sectiontitlemark} % Ширина мітки для секції
-\advance\@chaptoclabel@len by -\@sectiontitlemark@box
-\renewcommand*\l@section{\@dottedtocline{2}{\@chaptoclabel@len}{\@sectoctitle@len}}
-% -------------------- Верстка ЗМІСТУ для Підсекцій ---------------------------
+\titleformat{\chapter}[block]
+{\normalfont\sffamily}{}{0pt}
+{\parbox[b]{\chapnumb}{%
+   \color{themecolordark}\fontsize{100}{90}\selectfont\thechapter}%
+  \parbox[b]{\dimexpr\textwidth-\chapnumb\relax}{%
+    \raggedleft%
+    \hfill{\LARGE#1}\\
+    \rule{\dimexpr\textwidth-\chapnumb\relax}{0.4pt}}}
 
-\newlength{\thesubsection@len}\settowidth{\thesubsection@len}{\thesubsection}
-\renewcommand*\l@subsection{\@dottedtocline{2}{7.2em}{\thesubsection@len}}
+\titleformat{name=\chapter,numberless}[block]
+{\normalfont\sffamily}{}{0pt}
+{\parbox[b]{\chapnumb}{%
+   \mbox{}}%
+  \parbox[b]{\dimexpr\textwidth-\chapnumb\relax}{%
+    \raggedleft%
+    \hfill{\LARGE#1}\\
+    \rule{\dimexpr\textwidth-\chapnumb\relax}{0.4pt}}}
 
-% -------------------------- Верстка СЕКЦІЇ-------------------------------------
-\renewcommand\section{\global\@topnum\z@
-  \@afterindentfalse
-  \secdef\@section\@ssection}
-\def\@section[#1]#2{\refstepcounter{section}%
-	\def\@sectoclabel@format{\@sectiontitlemark\hspace\@spase\thesection\@secnum@dot\space}
-	\settowidth{\@tempdimb}{\@sectoclabel@format}
-	\ifdim\@tempdimb=\@sectoctitle@len
-		\relax
-	\else
-		\setlength\@sectoctitle@len{\@tempdimb}
-		\addtocontents{toc}{\setlength\@sectoctitle@len{\the\@tempdimb}}
-	\fi
-	\addcontentsline{toc}{section}{\protect\numberline{\@sectoclabel@format}#1}%
-	\sectionmark{#1}%
-	\addtocontents{lof}{\protect\addvspace{10\p@}}%
-	\addtocontents{lot}{\protect\addvspace{10\p@}}%
-	\@makesectionhead{#2}%
-	\@afterheading
-}
-\def\@makesectionhead#1{%
-	\settowidth{\length@titlemark}{\@sectiontitlemark\hspace\@spase\thesection\@secnum@dot}
-	\vspace*{10\p@}%
-	{\parindent \z@ \raggedright%
-	%\normalfont\sffamily\normalsize\bfseries
-		\begin{tikzpicture}[overlay,every node/.style={signal, draw, text=white, signal to=nowhere}]
-		  \node[baseline,themecolordark,fill, signal to=east, inner sep=0.25em, drop shadow,
-		    text=white,font=\bfseries\normalfont,anchor=west,
-		    xshift=-2cm, yshift=1ex]
-		    at (0,0) {\color{white}\@sectiontitlemark\hspace\@spase\thesection\@secnum@dot};
-		\end{tikzpicture}%
-		\bfseries\sffamily\normalsize\hspace*{\dimexpr\length@titlemark-1cm\relax}\parbox{\dimexpr\linewidth-1cm\relax}{#1}%
-		\par\nopagebreak
-		%\vskip-1.75ex{\hskip-2cm\color{gray!60}\rule{\textwidth + 2cm}{2pt}}\nobreak
-		\vskip 10\p@\nopagebreak
-	}}
-\def\@ssection#1{\refstepcounter{section}%
-	\if@twocolumn
-		\@topnewpage[\@makessectionhead{#1}]%
-	\else
-		\@makessectionhead{#1}%
-		\@afterheading
-		%\addcontentsline{toc}{section}{#1}% % 21/12/2017
-		\sectionmark{#1}%
-	\fi}
-\def\@makessectionhead#1{%
-	\vspace*{10\p@}%
-	{\parindent \z@ \raggedright
-		\normalfont
-		\interlinepenalty\@M
-		\sffamily\large\bfseries  #1\par\nopagebreak
-		\vskip 10\p@
-	}}
-% -------------------------- Верстка ПІДСЕКЦІЇ----------------------------------
+\titleformat{\section}
+{\normalsize\bfseries}{\thesection.}{1em}{#1}
 
-\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-	{-3.25ex\@plus -1ex \@minus -.2ex}%
-	{1.5ex \@plus .2ex}%
-	{\normalfont\normalsize\bfseries}}
+\titleformat{\subsection}
+{\normalsize\bfseries\itshape}{\thesubsection.}{1em}{#1}
 
-%===============================================================================
+
+
+\newpagestyle{main}{\headrule%
+  \sethead{\ifodd\thepage\relax\else\itshape\small\thechapter.\ \chaptertitle\fi}{}{\ifodd\thepage\itshape\small\thechapter.\ \chaptertitle\else\relax\fi}
+  \setfoot{}{\small\thepage}{}}
+
+\newpagestyle{answers}{\headrule%
+  \sethead{\ifodd\thepage\relax\else\itshape\small Відповіді\fi}{}{\ifodd\thepage\itshape\small Відповіді\else\relax\fi}
+  \setfoot{}{\small\thepage}{}}
+
+\newpagestyle{appendix}{\headrule%
+  \sethead{\ifodd\thepage\relax\else\itshape\small Додатки\fi}{}{\ifodd\thepage\itshape\small Додатки\else\relax\fi}
+  \setfoot{}{\small\thepage}{}}
+
+\newpagestyle{bibliography}{\headrule%
+  \sethead{\ifodd\thepage\relax\else\itshape\small\bibname\fi}{}{\ifodd\thepage\itshape\small\bibname\else\relax\fi}
+  \setfoot{}{\small\thepage}{}}
+
+\renewpagestyle{plain}{%
+  \sethead{}{}{}
+  \setfoot{}{\small\thepage}{}}
+
+\assignpagestyle{\chapter}{plain}
+\assignpagestyle{\part}{empty}
+
+%========================================================================================================
 %
-%										Колонтитули
+%										Підписи під таблицями, рисунками та списки
 %
-%===============================================================================
-
-% ------------------------- Колонтитули для РОЗДІЛУ ----------------------------
-\def\ps@chapterpage{%
-	\renewcommand{\@oddhead}%
-	{
-	}% конец макроопределения
-
-	\renewcommand{\@evenhead}%
-	{
-	}%
-
-	\renewcommand{\@oddfoot}%
-	{\raisebox{0pt}[\headheight][0pt]{%
-			\vbox{\hbox to\textwidth{\strut
-					\small{\hfil\small\hyperlink{tocpage}{\thepage}}\hfil}}}% конец блока
-	}%
-
-	\renewcommand{\@evenfoot}%
-	{\raisebox{0pt}[\headheight][0pt]{%
-			\vbox{\hbox to\textwidth{\strut
-					\small{\hfil{\small\hyperlink{tocpage}{\thepage}}\hfil}}}}% конец блока
-	}% ия
-}
-
-% ----------------------- Колонтитули для основних сторінок --------------------
-
-\def\ps@main{%
-\def\chaptermark##1{                       % ##1 - містить значення, яке сюди вкладують команди \@chapter та \@schapter
-\markboth {%
-	\ifnum \c@secnumdepth >\m@ne
-		\if@mainmatter%
-			\ifappendix\relax      % Якщо сторінка додатків то друкувати "Додатки"
-			\else
-				\iftoc\relax                    % Якщо сторінка змісту то друкувати "Зміст"
-				\else
-					\ifanswers\relax             % Якщо сторінка з відповідями, друкувати "Відповіді"
-					\else
-						\protect\hyperlink{\@currentHref}{\@chapapp\ \thechapter\@chapnum@dot} \ % Якщо стрінка з задачими, друкувати "Розділ 1." (тут \@chapapp=Розділ)
-					\fi
-				\fi
-			\fi
-		\fi
-	\fi
-	##1}{%
-		\iftoc\contentsname\fi%
-		\ifintro##1\fi%
-		}%
-}%
-\def\sectionmark##1{%
-\markright {%
-	\ifnum \c@secnumdepth >\z@
-		\ifbibliography\bibname
-			\else%
-			\protect\hyperlink{\@currentHref}{\@sectiontitlemark~\thesection\@secnum@dot}\ ##1%\@sectiontitlemark = \S (для Розділів), інші значення встановлюються командами \appendix та \answers
-		\fi
-	\fi
-	}}
-
-\renewcommand{\@oddhead}%
-{\raisebox{0pt}[\headheight][0pt]{% начало блока
-		\vbox{\hbox to\textwidth{\strut
-				\small{\hfil\small\leftmark\hfil}}\hrule}}% конец блока
-}% конец макроопределения
-
-\renewcommand{\@evenhead}%
-{\raisebox{0pt}[\headheight][0pt]{% начало блока
-		\vbox{\hbox to\textwidth{\strut
-				\small{\hfil{\small\rightmark}\hfil}}\hrule}}% конец блока
-}% конец макроопределения
-
-\renewcommand{\@oddfoot}%
-{\raisebox{0pt}[\headheight][0pt]{% начало блока
-		\vbox{\hbox to\textwidth{\strut
-				\small{\hfil\small\hyperlink{tocpage}{\thepage}}\hfil}}}% конец блока
-}% конец макроопределения
-
-\renewcommand{\@evenfoot}%
-{\raisebox{0pt}[\headheight][0pt]{% начало блока
-		\vbox{\hbox to\textwidth{\strut
-				\small{\hfil{\small\hyperlink{tocpage}{\thepage}}\hfil}}}}% конец блока
-}% конец макроопределения
-}
-
-%===============================================================================
-%
-%							Підписи під таблицями, рисунками та списки
-%
-%===============================================================================
+%========================================================================================================
 
 \def\tabcaption{\def\@captype{table}\caption}
 \def\figcaption{\def\@captype{figure}\caption}
 \RequirePackage[inline]{enumitem}
-%\setlist{nolistsep}
+\setlist{nolistsep}
 
 
-% ------------------------------- Відступи в формулах --------------------------
+% ---------------------------------------------- Відступи в формулах ----------------------------------
 
 \setlength\abovedisplayskip{1ex}
 \setlength\belowdisplayskip{1ex}
 \setlength\abovedisplayshortskip{1ex}
 \setlength\belowdisplayshortskip{1ex}
 
-% --------------------- Відступ між написом та рисунком ------------------------
+% --------------------------------------- Відступ між написом та рисунком -----------------------------
 
 \setlength{\textfloatsep}{5pt}
 
-% --------------------- Підписи до рисунку (розмір тексту) ---------------------
+% -------------------------------------- Підписи до рисунку (розмір тексту) ---------------------------
 
 \captionsetup[figure]{font=small,labelfont=small}
 \captionsetup[table]{font=small,labelfont=small}
 
-% ---------------------------- Bibliography spacing ----------------------------
+% --------------------------------------------- Bibliography spacing ------------------------------------
 \newlength{\bibitemsep}\setlength{\bibitemsep}{.1\baselineskip plus .05\baselineskip minus .05\baselineskip}
 \newlength{\bibparskip}\setlength{\bibparskip}{0pt}
 \let\oldthebibliography\thebibliography
@@ -757,11 +506,12 @@
 	\setlength{\itemsep}{\bibparskip}%
 }
 
-%===============================================================================
+%========================================================================================================
 %
-%									 HYPERREF
+%										            HYPERREF
 %
-%===============================================================================
+%========================================================================================================
+
 
 \RequirePackage[%
 	bookmarks = true,
@@ -770,7 +520,7 @@
 	linktocpage = true,
 	hypertexnames=false,
 	pdftoolbar=false,
-	pdfpagelayout=TwoPageRight,
+	pdfpagelayout=TwoPageLeft,
 	pdfauthor={Ponomarenko S.M.},
 	pdfdisplaydoctitle=true,
 	pdfkeywords={Electrostatics, Magnetostatics, Electrodynamics, Current, Field},
@@ -778,25 +528,38 @@
 ]%
 {hyperref}
 \RequirePackage[all]{hypcap}
+\RequirePackage{bookmark}
 
-% --------------- Патч для україомовної назви розділу для nameref ----------- %
+% --------------------------------- Патч для україомовної назви розділу для nameref ------------------
+%%%
 \addto\extrasukrainian{%
 	\renewcommand{\chapterautorefname}{}%
 }
-% --------------------------------------------------------------------------------
+%
+%------------------------------------------------------------------------------------------------------
+%
+%%%
 
 \ifdefined\inlinetitle%
 \AtBeginDocument{\hypersetup{pdftitle={\inlinetitle}}}
 \fi
 
-%===============================================================================
+%========================================================================================================
 %
-%							Налаштування бібліографії
+%										Налаштування бібліографії
 %
-%===============================================================================
+%========================================================================================================
 
 \ifbiblatex
-  \RequirePackage[backend=biber, bibstyle=gost-numeric, babel=other, isbn=true, url=false, defernumbers=true]{biblatex}
+\RequirePackage[backend=biber,
+bibstyle=gost-numeric,
+maxnames = 10,
+ autolang=other,
+isbn=true,
+url=false,
+defernumbers=true,
+sorting=none,
+]{biblatex}
   \newbibmacro{string+url}[1]{%
   	\iffieldundef{url}{#1}{\href{\thefield{url}}{#1}}%
   }
@@ -815,11 +578,14 @@
     }
 \fi
 
-%===============================================================================
+\newcommand*{\addtocategoryNoCi}[2]{\addtocategory{#1}{#2}\nocite{#2}}
+
+
+%========================================================================================================
 %
-%								Верстка теоретичних відомостей
+%										Верстка теоретичних відомостей
 %
-%===============================================================================
+%========================================================================================================
 
 \newtcolorbox[auto counter]{Theory}[1][]{
   breakable,
@@ -871,11 +637,11 @@
   drop fuzzy shadow,#1}
 
 
-%===============================================================================
+%========================================================================================================
 %
 %										Верстка задач
 %
-%===============================================================================
+%========================================================================================================
 %\usepackage[framemethod=tikz]{mdframed}
 \RequirePackage{ntheorem}
 \RequirePackage{answers}
@@ -894,9 +660,9 @@
 {%
 	\hypertarget{problem:\@roman{##2}}{}%
 	\ifcsname r@solution\@roman{##2}\endcsname
-		\item[\theorem@headerfont\hyperlink{solution:\@roman{##2}}{##2\theorem@separator}] (##3)
+		\item[\theorem@headerfont\hyperlink{solution:\@roman{##2}}{##2\theorem@separator}] ({\itshape##3})
 	\else
-		\item[\theorem@headerfont##2\theorem@separator] (##3)
+		\item[\theorem@headerfont##2\theorem@separator] ({\itshape##3})
 	\fi
 }
 
@@ -911,13 +677,18 @@
 \tcbset{
 		answersolutionstyle/.style={
 			enhanced jigsaw,colframe=cyan,interior hidden, boxrule=0pt, frame hidden,
-				breakable,before skip=10pt,after skip=10pt,
+				breakable,before skip=10pt,after skip=10pt, parbox=false, ,before upper={\parindent20pt},
 				overlay unbroken = {\draw[line width=1pt, themecolorlight, rounded corners] (frame.south west) rectangle (frame.north east);},
 				extras first={
 		        overlay={%
 			            \draw[line width=1pt, themecolorlight, rounded corners] (frame.south west) -- (frame.north west) -- (frame.north east) --(frame.south east);
 						},
 				},
+				extras middle={
+		        overlay={%
+			            \draw[line width=1pt, themecolorlight, rounded corners] (frame.north west) -- (frame.south west)  (frame.south east) --(frame.north east);
+						},
+                },
 				extras last={
 		        overlay={%
 			            \draw[line width=1pt, themecolorlight, rounded corners] (frame.north west) -- (frame.south west) -- (frame.south east) --(frame.north east);
@@ -929,31 +700,31 @@
 \tcolorboxenvironment{problem}{answersolutionstyle}
 
 
-%===============================================================================
+%========================================================================================================
 %
 %										Генеррування відповідей до задач
 %
-%===============================================================================
+%========================================================================================================
 
 \newtcolorbox{answerbox}{answersolutionstyle,halign=left}
 
 \Newassociation{solution}{Solution}{answer}
 \renewenvironment{Solution}[1]{%
-	\begin{answerbox}
+	\begin{answerbox}\setcounter{equation}{0}
 \hypertarget{solution:\@roman{#1}}{\hyperlink{problem:\@roman{#1}}{\bfseries#1.}\label{solution\@roman{#1}}}
 }{%
 	\end{answerbox}
 }
 
 
-%===============================================================================
+%========================================================================================================
 %
-%						Команда вставки задач та відповідей
+%									Команда вставки задач та відповідей
 %
 %       https://tex.stackexchange.com/questions/382776/how-to-create-list-and-assign-it-to-variable
-%===============================================================================
+%========================================================================================================
 \ExplSyntaxOn
-% ---------------------- Another good solution ---------------------------------
+% ---------------------------------------- Another good solution ----------------------------------------
 %\NewDocumentCommand{\multiinclude}{ m O{} }
 % {
 %  \clist_map_inline:cn {chapter_list_#1_clist} { \InputIfFileExists{##1/##1#2}{}{}\par}
@@ -963,14 +734,189 @@
 % {
 %  \clist_set:cn {chapter_list_#1_clist} { #2 }
 % }
-% --------------------------------------------------------------------------------
+% -------------------------------------------------------------------------------------------------------
 \NewDocumentCommand{\multiinclude}{ m O{} }
 {
 	\clist_set:Nx \l_Chapters_clist{ #1 }
 	\clist_map_inline:Nn \l_Chapters_clist { \InputIfFileExists{##1/##1#2}{}{}\par}
 }
 
+%\NewDocumentCommand{\Size}{m}{\int_div_round:nn {\file_size:n{#1}+482454}{1024}}
 \ExplSyntaxOff
-%===============================================================================
+%========================================================================================================
+
+%========================================================================================================
+%
+%                                         Друк версії документу на полях
+%
+%========================================================================================================
+\ifmarginversioninfo
+	% http://tex.stackexchange.com/questions/54808/rotated-running-text-in-right-margin
+	\RequirePackage[contents={},opacity=0.5,scale=1.5,color=gray]{background}
+	\newcommand\Texta{\bf\footnotesize Версія від \today\ (число задач \TotalValue{totalproblems})} % odd page
+	\newcommand\Textb{\bf\footnotesize Версія від \today\ (число задач \TotalValue{totalproblems})} % even pages
+	%-----------------------------------------
+	\AddEverypageHook{%
+		\ifodd\value{page}
+			\backgroundsetup{
+				angle=90,
+				position={-0.06\textwidth,-0.35\textheight},
+				contents={\Texta}
+			}%
+		\else
+			%-----------------------------------------
+			\backgroundsetup{
+				angle=90,
+				position={0.68\textwidth,-0.35\textheight},
+				contents={\Textb}
+			}%
+		\fi
+		\BgMaterial}
+\fi
+
+\RequirePackage{grabbox}
+
+
+\newlength\wrapcont@width
+\newlength\wrapcont@sep
+\newlength\wrapcont@indent
+\newlength\wrapcont@hsize
+\newcount\wrapcont@lines
+\newcount\wrapcont@tempcount
+\setlength\wrapcont@sep{5pt}
+\newsavebox\wrapcont@box
+\newcommand*\wrapcontents[2][]
+  {%
+    % #1 : width
+    % #2 : l/r
+    \@ifnextchar[{\wrapcont@a{#1}{#2}}{\wrapcont@a{#1}{#2}[+0]}%
+  }
+\def\wrapcont@a#1#2[#3]%
+  {%
+    % #1 : width
+    % #2 : l/r
+    % #3 : correction
+    \if\relax\detokenize{#1}\relax
+      \wrapcont@hbox
+    \fi
+    \wrapcont@vbox{#1}{#2}{#3}%
+  }
+\def\wrapcont@hbox\fi\wrapcont@vbox#1#2#3%
+  {%
+    % #1 : width
+    % #2 : l/r
+    % #3 : correction
+    \fi
+    \@grabbox{}\wrapcont@box{}\hbox{}{\wrapcont@b{#2}{#3}}%
+  }
+\newcommand*\wrapcont@vbox[3]
+  {%
+    % #1 : width
+    % #2 : l/r
+    % #3 : correction
+    \@grabbox{\hsize=#1\relax\linewidth\hsize}\wrapcont@box{}\vbox{}%
+      {\wrapcont@b{#2}{#3}}%
+  }
+\newcommand*\wrapcont@b[2]
+  {%
+    % #1 : l/r
+    % #2 : correction
+    \@ifnextchar[{\wrapcont@c{#1}{#2}}{\wrapcont@c{#1}{#2}[0]}%
+  }
+\newcommand*\wrapcont@parshape{}
+\def\wrapcont@c#1#2[#3]%
+  {%
+    % #1 : l/r
+    % #2 : correction
+    % #3 : lines skipped
+    \wrapcont@width\wd\wrapcont@box\relax
+    \advance\wrapcont@width\wrapcont@sep
+    \wrapcont@hsize\linewidth
+    \advance\wrapcont@hsize-\wrapcont@width
+    \ifnum0<0#2\relax
+      \wrapcont@lines#2\relax
+    \else
+      \wrapcont@lines
+        \numexpr
+          (\ht\wrapcont@box+\dp\wrapcont@box\ifnum#3>0 +\wrapcont@sep\fi+\wrapcont@sep)%
+          /\baselineskip#2%
+        \relax
+    \fi
+    \vbox to 0pt
+      {%
+        \vskip#3\baselineskip
+        \ifnum#3>0
+          \vskip\wrapcont@sep
+        \fi
+        \def\@tempa{#1}%
+        \def\@tempb{r}%
+        \ifx\@tempa\@tempb
+          \vtop{\noindent\hbox to\hsize{\hss\usebox\wrapcont@box}}%
+        \else
+          \def\@tempb{l}%
+          \ifx\@tempa\@tempb
+          \else
+            \GenericError
+              {}
+              {wrapcontent Error: Unknown alignment '#1', using 'l' as backup.}
+              {}{}%
+          \fi
+          \vtop{\noindent\usebox\wrapcont@box}%
+        \fi
+        \vss
+      }%
+    \begingroup
+      \def\@tempa{#1}%
+      \def\@tempb{r}%
+      \ifx\@tempa\@tempb
+        \aftergroup\wrapcont@indent\aftergroup\z@
+      \else
+        \aftergroup\wrapcont@indent\aftergroup\wrapcont@width
+      \fi
+    \endgroup
+    \vglue-\parskip
+    \vskip-\baselineskip
+    \wrapcont@tempcount0
+    \edef\wrapcont@parshape{=\the\numexpr#3+\wrapcont@lines+1\relax\space}%
+    \loop\ifnum#3>\wrapcont@tempcount
+      \advance\wrapcont@tempcount\@ne
+      \edef\wrapcont@parshape
+        {\unexpanded\expandafter{\wrapcont@parshape}0pt \the\hsize\space}%
+    \repeat
+    \wrapcont@tempcount0
+    \loop\ifnum\wrapcont@lines>\wrapcont@tempcount
+      \advance\wrapcont@tempcount\@ne
+      \edef\wrapcont@parshape
+        {%
+          \unexpanded\expandafter{\wrapcont@parshape}%
+          \the\wrapcont@indent\space\the\wrapcont@hsize\space
+        }%
+    \repeat
+    \edef\wrapcont@parshape
+      {\unexpanded\expandafter{\wrapcont@parshape}0pt \the\hsize\space}
+    \expandafter\parshape\wrapcont@parshape\relax
+  }
+\newcommand*\restorewrap[1][0]
+  {%
+    \ifnum0=#1\relax
+      \parshape=0
+    \else
+      \wrapcont@tempcount0
+      \edef\wrapcont@parshape{=\the\numexpr#1+1\relax\space}%
+      \loop\ifnum#1>\wrapcont@tempcount
+        \advance\wrapcont@tempcount\@ne
+        \edef\wrapcont@parshape
+          {%
+            \unexpanded\expandafter{\wrapcont@parshape}%
+            \the\wrapcont@indent\space\the\wrapcont@hsize\space
+          }%
+      \repeat
+      \edef\wrapcont@parshape
+        {\unexpanded\expandafter{\wrapcont@parshape}0pt \the\hsize\space}%
+      \expandafter\parshape\wrapcont@parshape
+    \fi
+    \relax
+  }
+
 
 \endinput

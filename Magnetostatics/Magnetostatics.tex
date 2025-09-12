@@ -1476,6 +1476,58 @@
 
 \subsection*{Пондеромоторні сили, що діють на магнетики в магнітному полі}
 
+%=========================================================
+\begin{problem}\label{prb:Fmax}
+В установці, наведеній на рис.~\ref{pic:Fmax}, вимірюють силу, з якою парамагнітна кулька об’ємом \( V \) притягується до полюса електромагніту $M$. Індукція магнітного поля на осі полюса залежить від відстані за законом \( B = B_0 \exp(-a z^2) \), де константи \( B_0 \) та \( a \) відомі.
+
+Знайти:
+\begin{enumerate}[label=\alph*)]
+    \item на якій висоті \( z \) потрібно помістити кульку, щоб сила притягання була максимальною;
+    \item магнітну сприйнятливість \( \chi \) парамагнетика, якщо максимальна сила притягання дорівнює \( F_{\text{max}} \).
+\end{enumerate}
+\begin{solution}
+
+\begin{enumerate}[label=\alph*)]
+    \item $z = \frac{1}{2\sqrt{a}}$;
+    \item $\chi = \frac{F_{\max}}{V B_0^2 }\sqrt{\frac{e}{a}}$.
+\end{enumerate}
+
+
+\end{solution}
+\end{problem}
+
+%---------------------------------------------------------
+\begin{figure}[h!]\centering
+    \begin{tikzpicture}[>=latex, midarrow/.style={%
+       				postaction={ decorate,
+       						decoration={ markings, mark=at position .7 with
+       									{\arrow{stealth}}}}}]
+
+    \begin{scope}[rotate=90]
+        \draw[inner color=red, middle color=white, outer color=red!20] (1,0) ellipse(0.2 and 1) ;
+        \fill[draw, shading=axis, top color=red, middle color=red, bottom color=red!50] (0, 1) -- ++(1, 0) arc(90:270: 0.2 and 1) -- ++(-1, 0);
+
+                   				\foreach \y in {-4,...,4}{
+                   						\draw[red!20, midarrow, line width=0.5pt] plot[domain=1:6] (\x,
+                   						0.2*\y+0.01*\y*\x^2);
+                   					}
+        \node[circle, ball color=red, inner sep=0.1cm, draw] (C) at (3,0) {} ;
+
+
+        \draw[ultra thick, gray] (C) -- ++(2, 0) ;
+
+        \draw[ultra thick] (5.15,0.1) arc(45:270:0.1) coordinate (H);
+
+        \fill[draw, shading=axis, top color=gray!50, middle color=gray, bottom color=gray!50] (H) -- ++({-90-10}:2) to[bend right] ++({4*sin(10)}, 0) -- cycle;
+
+    \end{scope}
+
+    \end{tikzpicture}
+\caption{Рисунок до задачі~\ref{prb:Fmax}}
+\label{pic:Fmax}
+\end{figure}
+%---------------------------------------------------------
+
 
 %=========================================================
 \begin{problem}\label{prb:ballunderring_magnetic}
