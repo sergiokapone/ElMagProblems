@@ -3037,13 +3037,13 @@ $$F = 2\pi S \cdot \frac{\sigma^2}{d^2}[d^2 - 2dL + L^2 - L^2]$$
 
 $$F = 2\pi S \cdot \frac{\sigma^2}{d^2} \cdot d(d - 2L)$$
 
-$$\boxed{F = \frac{2\pi S\sigma^2(d - 2L)}{d}}$$
+$$F = \frac{2\pi S\sigma^2(d - 2L)}{d}$$
 
 \textbf{Висновок:}
 \begin{itemize}
-    \item При $L < d/2$: $F > 0$ -- сила направлена до лівої пластини
-    \item При $L > d/2$: $F < 0$ -- сила направлена до правої пластини
-    \item При $L = d/2$: $F = 0$ -- сила дорівнює нулю (рівновага)
+    \item При $L < d/2$: $F > 0$ -- сила направлена до лівої пластини.
+    \item При $L > d/2$: $F < 0$ -- сила направлена до правої пластини.
+    \item При $L = d/2$: $F = 0$ -- сила дорівнює нулю (рівновага).
 \end{itemize}
 
 Сила завжди направлена до ближчої незарядженої пластини.
@@ -3055,9 +3055,9 @@ $$\boxed{F = \frac{2\pi S\sigma^2(d - 2L)}{d}}$$
 \begin{figure}[h!]\centering
 	\begin{tikzpicture}[>=latex]
 
-        \draw[ultra thick, ]  (-2, 0) coordinate (1) -- ++(0, 3);
-        \draw[ultra thick, red]  (0, 0) coordinate (C) -- ++(0, 3) node[above] {$+q$};
-        \draw[ultra thick, ]  (1, 0) coordinate (2) -- ++(0, 3);
+        \draw[line width=3pt, ]  (-2, 0) coordinate (1) -- ++(0, 4);
+        \draw[line width=3pt, red]  (0, 0) coordinate (C) -- ++(0, 4) node[above] {$+q$};
+        \draw[line width=3pt, ]  (1, 0) coordinate (2) -- ++(0, 4);
 
         \draw[<->] ([yshift=1cm]1) -- node[above] {$L$} ([yshift=1cm]C);
         \draw[<->] ([yshift=0.25cm]1) -- node[above] {$d$} ([yshift=0.25cm]2);
