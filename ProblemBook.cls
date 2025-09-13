@@ -215,6 +215,8 @@
 \RequirePackage[justification=centering,labelsep=period]{caption}
 \RequirePackage{multirow}
 \RequirePackage{subcaption}
+\RequirePackage{tabularray}
+\UseTblrLibrary{booktabs}
 % ------------------------------------- Фалові операції -------------------------------------------------
 \RequirePackage{currfile}
 % ------------------------------------- Пакети LaTeX3 ---------------------------------------------------

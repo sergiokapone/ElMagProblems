@@ -40,21 +40,60 @@
 де $\vect{r}'$~--- радіус-вектор елементів заряду $\rho(\vect{r'}) dV'$, а $\vect{r}$~--- радіус-вектор точки спостереження (рис.~\ref{charge_distribution}).
 
 %---------------------------------------------------------
-\begin{center}
-    \begin{tikzpicture}
-        \pgfmathsetseed{10}
-		\fill[gray!20] plot [smooth cycle, samples=8,domain={1:8}] (\x*360/8+6*rnd:1cm+2cm*rnd);
-		\coordinate (O) at (-1.5,0);
-        \draw[-latex] (O) -- +(3,0) node[below] {$y$};
-		\draw[-latex] (O) -- +(0,3) node[left] {$z$};
-		\draw[-latex] (O) -- +(225:2.5) node[left] {$x$};
-		\node[below] at (O) {$O$};
-		\draw[-latex] (O) --  node[pos=0.5, anchor=west] {$\vect{r'}$} +(65:1.5) coordinate (endp);
-		\draw[-latex] (O) -- node[pos=0.5, below] {$\vect{r}$} +(25:10) coordinate (end) ;
-		\draw[-latex] (endp) -- (end) node[pos=0.45, above, sloped] {$\vect{r} - \vect{r'}$};
-		\draw[ball color=red!50, opacity=0.5] (endp) circle (0.1) node[above, opacity=1] {$\rho'dV'$};
-		\node[above] at (end) {$P$};
-    \end{tikzpicture}
+	\begin{center}
+	% Размер куба
+	\def\cx{.33} % относительный размер куба
+
+	% Создание стиля узла для куба
+	\tikzset{
+		cube/.style={
+				append after command={
+						\pgfextra{
+							% Сторона сверху
+							\fill[#1!20, draw=#1]
+							(\tikzlastnode.south west) --
+							($(\tikzlastnode.south west) + (\cx,0,0)$) --
+							($(\tikzlastnode.south west) + (\cx,\cx,0)$) --
+							($(\tikzlastnode.south west) + (0,\cx,0)$) --
+							cycle;
+							% Передняя сторона
+							\fill[#1!10, draw=#1]
+							($(\tikzlastnode.south west) + (0,\cx,0)$) --
+							($(\tikzlastnode.south west) + (0,\cx,-\cx)$) --
+							($(\tikzlastnode.south west) + (\cx,\cx,-\cx)$) --
+							($(\tikzlastnode.south west) + (\cx,\cx,0)$) --
+							cycle;
+							% Правая сторона
+							\fill[#1!30, draw=#1]
+							($(\tikzlastnode.south west) + (\cx,0,0)$) --
+							($(\tikzlastnode.south west) + (\cx,\cx,0)$) --
+							($(\tikzlastnode.south west) + (\cx,\cx,-\cx)$) --
+							($(\tikzlastnode.south west) + (\cx,0,-\cx)$) --
+							cycle;
+						}
+					}
+			}
+	}
+	\begin{tikzpicture}[>=latex]
+		\coordinate (O) at (-1, -0.5, 0);
+		\draw[->] (O) -- ++(0, 2, 0) node[above] {$z$};
+		\draw[->] (O) -- ++(0, 0, 4) node[left]  {$x$};
+		\draw[->] (O) -- ++(2, 0, 0) node[below] {$y$};
+
+		\pgfmathsetseed{42}
+		\fill[gray!50, opacity=0.5] (0.5, 0.5, 0) plot[domain=0:360, smooth cycle] ({\x}:{0.2*rnd + 1.7});
+
+		\node[cube=red] (q) at (0.5,1.8,1)  {};
+		\node[above=6pt] at (q) {$\rho(\vect{r}') dV'$};
+
+		\node[circle, inner sep=0.5, fill] (P) at (xyz polar cs:angle=45, x radius=10, y radius=4) {};
+
+		\draw[->, red] (O) --  (q) node[anchor=east, text=black, pos=0.6, inner sep=1pt] {$\vect{r}'$};
+		\draw[->, blue] (q) -- node[above, sloped] {$\vect{r} - \vect{r}'$} (P);
+		\draw[->] (O) -- (P) node[below, sloped, pos=0.8] {$\vect{r}$} ;
+		\node[below] at (P) {$P$};
+%		\draw[->, red, thick] (P) -- ($(q)!1.2!(P)$) node[above] {$d\Efield(\vect{r})$};
+	\end{tikzpicture}
 \captionof{figure}{Тіло із заданим розподілом заряду $\rho(\vect{r'})$\label{charge_distribution}}
 \end{center}
 %---------------------------------------------------------
@@ -165,7 +204,7 @@
 
 %=========================================================
 \begin{problem}
-    Рівномірно заряджена з поверхневою густиною $\rho$ нескінченна тонка пластина розділена на дві половини щілиною ширини $d$. Знайти напруженість електричного поля на великих відстанях $r \gg d$ від щілини.
+    Рівномірно заряджена з поверхневою густиною $\sigma$ нескінченна тонка пластина розділена на дві половини щілиною ширини $d$. Знайти напруженість електричного поля на великих відстанях $r \gg d$ від щілини.
 \begin{solution}
 	$\Efield = 2\pi\sigma\frac{\vect{r}}{r} - 2d\sigma\frac{\vect{r}}{r^2}$, де $\vect{r}$~--- радіус-вектор проведений від осі симетрії щілини в точку спостереження.
 \end{solution}
@@ -310,13 +349,13 @@
 \subsection*{Визначення напруженості електростатичного поля за допомогою теореми Гауса}
 
 %=========================================================
-\begin{problem}
-	За допомогою теореми Гауса обчисліть напруженість електричного поля в точці, яка розташована на відстані $r$ від
-\begin{enumerate*}[label=\alph*)]
-\item тонкої рівномірно зарядженої нитки з густиною заряду $\lambda$,
-\item нескінченної рівномірно зарядженої площини з густиною заряду $\sigma$.
-\end{enumerate*}
-\end{problem}
+%\begin{problem}
+%	За допомогою теореми Гауса обчисліть напруженість електричного поля в точці, яка розташована на відстані $r$ від
+%\begin{enumerate*}[label=\alph*)]
+%\item тонкої рівномірно зарядженої нитки з густиною заряду $\lambda$,
+%\item нескінченної рівномірно зарядженої площини з густиною заряду $\sigma$.
+%\end{enumerate*}
+%\end{problem}
 
 %=========================================================
 \begin{problem}
@@ -439,9 +478,9 @@ $\rho$. Відстань між центрами кулі і порожнини 
 \end{Theory}
 
 %=========================================================
-\begin{problem}
-    Визначте електричний дипольний момент системи, що складається з двох різнойменних однакових за модулем зарядів. Як напрямлена ця величина? Чи залежить ця величина від вибору початку координат?
-\end{problem}
+%\begin{problem}
+%    Визначте електричний дипольний момент системи, що складається з двох різнойменних однакових за модулем зарядів. Як напрямлена ця величина? Чи залежить ця величина від вибору початку координат?
+%\end{problem}
 
 
 %=========================================================
