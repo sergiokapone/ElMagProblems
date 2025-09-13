@@ -3,9 +3,14 @@
 % !TeX spellcheck = uk_UA
 % !TeX root =../EMProblems.tex
 
+%% --------------------------------------------------------
 \section{Основні формули векторного аналізу}\label{Vanaliz}
+%% --------------------------------------------------------
 
+
+%% --------------------------------------------------------
 \subsection{Диференціальні оператори}
+%% --------------------------------------------------------
 
 Оператор <<набла>> $\vect{\nabla}$
 \begin{equation}\label{nabla}
@@ -27,9 +32,14 @@
 	\mathrm{rot}\,\vect{A} = \rot\vect{A}
 \end{equation}
 
+%% --------------------------------------------------------
 \subsection{Диференціальні операції в різних системах координат}
+%% --------------------------------------------------------
 
+
+%% --------------------------------------------------------
 \subsubsection{Декартова система координат}
+%% --------------------------------------------------------
 
 \begin{align}\label{cartesian}
 	\vect{\nabla}\psi & = \frac{\partial \psi}{\partial x} \vect{i} + \frac{\partial \psi}{\partial y} \vect{j} + \frac{\partial \psi}{\partial z} \vect{k} \\
@@ -40,7 +50,9 @@
 	\left( \frac{\partial A_y}{\partial x}  - \frac{\partial A_x}{\partial y}\right)  \vect{k}
 \end{align}
 
+%% --------------------------------------------------------
 \subsubsection{Циліндрична система координат}
+%% --------------------------------------------------------
 
 \begin{align}\label{cylindric}
 	\vect{\nabla}\psi & = \frac{\partial \psi}{\partial \rho} \vect{e}_{\rho} + \frac{1}{\rho}\frac{\partial \psi}{\partial \phi} \vect{e}_{\phi} + \frac{\partial \psi}{\partial z} \vect{k}                                                                                            \\
@@ -51,7 +63,9 @@
 	{\frac {1}{\rho }}\left({\frac {\partial (\rho A_{\varphi })}{\partial \rho }}-{\frac {\partial A_{\rho }}{\partial \varphi }}\right)\vect{k}
 \end{align}
 
+%% --------------------------------------------------------
 \subsubsection{Сферична система координат}
+%% --------------------------------------------------------
 
 \begin{align}\label{spheric}
 	\vect{\nabla}\psi & = \frac{\partial \psi}{\partial r} \vect{e}_{r} + \frac{1}{r}\frac{\partial \psi}{\partial \theta} \vect{e}_{\theta} + \frac{1}{r\sin\theta}\frac{\partial \psi}{\partial \phi} \vect{e}_{\phi}                                                                                                            \\
@@ -68,8 +82,9 @@
 	                  & + \frac{1}{r}\left(\frac{\partial}{\partial r}\left(rA_{\theta }\right)-\frac{\partial A_{r}}{\partial \theta }\right)\vect{e}_{\phi}
 \end{align}
 
-
+%% --------------------------------------------------------
 \subsection{Другі похідні}
+%% --------------------------------------------------------
 
 \begin{align}
 	\mathrm{rot}\,\mathrm{grad}\,\phi    & = \rot(\vect{\nabla}\phi)  = 0                                             \\
@@ -77,8 +92,9 @@
 	\mathrm{rot}\,\mathrm{rot}\,\vect{A} & = \rot(\rot\vect{A})  = \vect{\nabla}(\divg\vect{A}) - \Laplasian \vect{A}
 \end{align}
 
-
+%% --------------------------------------------------------
 \subsection{Похідні від добутків}
+%% --------------------------------------------------------
 
 \begin{align}
 	\mathrm{grad}\,(\phi \psi)             & = \psi\,\mathrm{grad}\,\phi +\phi\, \mathrm{grad}\,\psi                                                                                                                           \\
@@ -90,8 +106,11 @@
 	\frac12\mathrm{grad}\,A^2              & =  \left( \vect{A}\vect{\nabla}\right)\vect{A} + \vect{A}\times\mathrm{rot}\,\vect{A}
 \end{align}
 
-
+%% --------------------------------------------------------
 \subsection{Інтегральні характеристики та теореми}
+%% --------------------------------------------------------
+
+
 Потік вектора $\vect{A}$
 \begin{equation}\label{flux}
 	\Phi_{\vect{A}} = \iint\limits_S \vect{A}\cdot d\vect{S}
@@ -126,7 +145,7 @@
 %	 \frac{1}{r}\sum\limits_{l=0}^{\infty}\left(\frac{R_0}{r}\right)^l P_l(\cos\chi),   \, &r > R_0
 %	\end{cases}
 %\end{equation}
-%де $P_l(\cos\chi)$~--- поліноми Лежандра від аргумента $\cos\chi$, який в свою чергу можна виразити через сферичні координати для вектора $\vect{R_0}(\Theta, \Phi)$ та для $\vect{r}(\theta, \phi)$: 
+%де $P_l(\cos\chi)$~--- поліноми Лежандра від аргумента $\cos\chi$, який в свою чергу можна виразити через сферичні координати для вектора $\vect{R_0}(\Theta, \Phi)$ та для $\vect{r}(\theta, \phi)$:
 %\[
 %	\cos\chi = \cos\Theta\cos\theta + \sin\Theta\sin\theta\cos(\Phi - \phi).
 %\]
@@ -137,3 +156,59 @@
 %& P_{0}(\cos\chi)  = 1, && P_{1}(\cos\chi)  = \cos\chi, \\
 %& P_{2}(\cos\chi)  = \frac {1}{2}(3\cos^2\chi-1), && P_{3}(x)  =\frac {1}{2}(5\cos^2\chi-3\cos\chi)
 %\end{align*}
+
+\clearpage
+
+%% --------------------------------------------------------
+\section{Деякі інтеграли, що часто використовуються}
+%% --------------------------------------------------------
+
+\begin{center}
+\begin{tblr}{
+  colspec={X[c] X[c]},
+  row{1}={font=\large\bfseries},
+  rowsep=1em,
+  hlines,
+  vlines
+}
+Інтеграл & Значення \\
+
+$\displaystyle \int_0^\infty x^n e^{-x} \, dx$ &
+$\displaystyle
+\begin{cases}
+1, & n = 0 \\[2mm]
+\frac{\sqrt{\pi}}{2}, & n = \frac{1}{2} \\[1mm]
+1, & n = 1 \\[1mm]
+2, & n = 2
+\end{cases}$ \\
+
+$\displaystyle \int_0^\infty x^n e^{-x^2} \, dx$ &
+$\displaystyle
+\begin{cases}
+\frac{\sqrt{\pi}}{2}, & n = 0 \\[1mm]
+\frac{1}{2}, & n = 1 \\[1mm]
+\frac{\sqrt{\pi}}{4}, & n = 2 \\[1mm]
+\frac{1}{2}, & n = 3
+\end{cases}$ \\
+
+$\displaystyle \int_0^\infty \frac{x^n \, dx}{e^x - 1}$ &
+$\displaystyle
+\begin{cases}
+2.31, & n = \frac{1}{2} \\[1mm]
+\frac{\pi^2}{6}, & n = 1 \\[1mm]
+2.405, & n = 2 \\[1mm]
+\frac{\pi^4}{15}, & n = 3 \\[1mm]
+24.9, & n = 4
+\end{cases}$ \\
+
+$\displaystyle \int_0^\alpha \frac{x^3 \, dx}{e^x - 1}$ &
+$\displaystyle
+\begin{cases}
+0.225, & \alpha = 1 \\[1mm]
+1.18, & \alpha = 2 \\[1mm]
+2.56, & \alpha = 3 \\[1mm]
+4.91, & \alpha = 5 \\[1mm]
+6.43, & \alpha = 10
+\end{cases}$ \\
+\end{tblr}
+\end{center}

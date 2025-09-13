@@ -1,41 +1,55 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{tabularray}
+\UseTblrLibrary{booktabs}
 
 \begin{document}
 
 \begin{tblr}{
-    colspec = {|X[c]|X[c]|},
-    hlines,
-    vlines,
-    row{1} = {font=\normalsize},
-    row{2} = {font=\normalsize},
+  colspec={X[c] X[c]},
+  row{1}={font=\large\bfseries},
+  rowsep=1em,
+  hlines,
+  vlines
 }
-$\displaystyle\int_0^\infty x^n e^{-x} dx = \begin{cases}
-1, & n = 0 \\
-\sqrt{\pi}/2, & n = 1/2 \\
-1, & n = 1 \\
+\text{Інтеграл} & \text{Значення} \\
+
+$\displaystyle \int_0^\infty x^n e^{-x} \, dx$ &
+$\displaystyle
+\begin{cases}
+1, & n = 0 \\[2mm]
+\frac{\sqrt{\pi}}{2}, & n = \frac{1}{2} \\[1mm]
+1, & n = 1 \\[1mm]
 2, & n = 2
-\end{cases}$ &
-$\displaystyle\int_0^\infty x^n \exp(-x^2) dx = \begin{cases}
-\sqrt{\pi}/2, & n = 0 \\
-1/2, & n = 1 \\
-\sqrt{\pi}/4, & n = 2 \\
-1/2, & n = 3
 \end{cases}$ \\
-$\displaystyle\int_0^\infty \frac{x^n dx}{e^x - 1} = \begin{cases}
-2{,}31, & n = 1/2 \\
-\pi^2/6, & n = 1 \\
-2{,}405, & n = 2 \\
-\pi^4/15, & n = 3 \\
-24{,}9, & n = 4
-\end{cases}$ &
-$\displaystyle\int_0^\alpha \frac{x^3 dx}{e^x - 1} = \begin{cases}
-0{,}225, & \alpha = 1 \\
-1{,}18, & \alpha = 2 \\
-2{,}56, & \alpha = 3 \\
-4{,}91, & \alpha = 5 \\
-6{,}43, & \alpha = 10
+
+$\displaystyle \int_0^\infty x^n e^{-x^2} \, dx$ &
+$\displaystyle
+\begin{cases}
+\frac{\sqrt{\pi}}{2}, & n = 0 \\[1mm]
+\frac{1}{2}, & n = 1 \\[1mm]
+\frac{\sqrt{\pi}}{4}, & n = 2 \\[1mm]
+\frac{1}{2}, & n = 3
+\end{cases}$ \\
+
+$\displaystyle \int_0^\infty \frac{x^n \, dx}{e^x - 1}$ &
+$\displaystyle
+\begin{cases}
+2.31, & n = \frac{1}{2} \\[1mm]
+\frac{\pi^2}{6}, & n = 1 \\[1mm]
+2.405, & n = 2 \\[1mm]
+\frac{\pi^4}{15}, & n = 3 \\[1mm]
+24.9, & n = 4
+\end{cases}$ \\
+
+$\displaystyle \int_0^\alpha \frac{x^3 \, dx}{e^x - 1}$ &
+$\displaystyle
+\begin{cases}
+0.225, & \alpha = 1 \\[1mm]
+1.18, & \alpha = 2 \\[1mm]
+2.56, & \alpha = 3 \\[1mm]
+4.91, & \alpha = 5 \\[1mm]
+6.43, & \alpha = 10
 \end{cases}$ \\
 \end{tblr}
 
