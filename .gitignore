@@ -15,4 +15,5 @@ _minted*/
 *.fls
 *.vrb
 *.fdb_latexmk
-/!Save
+!Save/
+*.synctex(busy)
