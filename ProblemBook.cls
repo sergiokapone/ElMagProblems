@@ -110,10 +110,10 @@
 %===============================================================================
 % ЛОГІЧНІ ЗМІННІ ДЛЯ СТРУКТУРИ ДОКУМЕНТУ
 %===============================================================================
-\newif\ifappendix      % чи це додатки
-\newif\ifanswers       % чи це відповіді
-\newif\iftoc           % чи це зміст
-\newif\ifbibliography  % чи це бібліографія
+%\newif\ifappendix      % чи це додатки
+%\newif\ifanswers       % чи це відповіді
+%\newif\iftoc           % чи це зміст
+%\newif\ifbibliography  % чи це бібліографія
 \newif\ifintro         % чи це вступ
 
 %===============================================================================
@@ -406,14 +406,85 @@
 
 %===============================================================================
 %
-% РУБРИКАЦІЯ (СТРУКТУРА ДОКУМЕНТУ)
+% РУБРИКАЦІЯ (СТРУКТУРА ДОКУМЕНТУ) - РАБОЧАЯ ВЕРСИЯ БЕЗ ФЛАГОВ
 %
 %===============================================================================
-
 
 \RequirePackage[pagestyles, explicit]{titlesec}
 \RequirePackage[dotinlabels]{titletoc}
 
+%===============================================================================
+% СИСТЕМА ТИПІВ РОЗДІЛІВ (замість флагів)
+%===============================================================================
+
+% Перечисление типов разделов
+\def\@sectiontype@normal{normal}
+\def\@sectiontype@toc{toc}
+\def\@sectiontype@appendix{appendix}
+\def\@sectiontype@answers{answers}
+\def\@sectiontype@bibliography{bibliography}
+\def\@sectiontype@intro{intro}
+
+% Текущий тип раздела
+\def\@current@sectiontype{\@sectiontype@normal}
+
+% Команды для установки типа раздела
+\newcommand{\setsectiontype}[1]{\def\@current@sectiontype{#1}}
+
+% Проверка типа раздела
+\newcommand{\checksectiontype}[1]{%
+    \expandafter\ifx\csname @sectiontype@#1\endcsname\@current@sectiontype
+        \expandafter\@firstoftwo
+    \else
+        \expandafter\@secondoftwo
+    \fi
+}
+
+%===============================================================================
+% ОПРЕДЕЛЕНИЕ НЕДОСТАЮЩИХ КОМАНД
+%===============================================================================
+
+% Проверяем и определяем недостающие команды
+\providecommand{\@chapapp}{Розділ}
+\providecommand{\bibname}{Література}
+\providecommand{\appendixname}{Додаток}
+\providecommand{\answersto}{Відповіді до розділу}
+
+% Безопасная версия гиперссылок
+\newcommand{\@safehyperlink}[2]{%
+    \@ifundefined{@currentHref}{#2}{\protect\hyperlink{\@currentHref}{#2}}%
+}
+
+%===============================================================================
+% ЛОГИЧЕСКИЕ ПЕРЕМЕННЫЕ ДЛЯ СОВМЕСТИМОСТИ
+%===============================================================================
+
+% Эмуляция старых флагов через систему типов
+\newif\if@appendix@mode
+\newif\if@answers@mode
+\newif\if@toc@mode
+\newif\if@intro@mode
+\newif\if@bibliography@mode
+
+% Автоматическое обновление флагов при смене типа
+\def\@update@legacy@flags{%
+    \@appendix@modefalse
+    \@answers@modefalse
+    \@toc@modefalse
+    \@intro@modefalse
+    \@bibliography@modefalse
+    \checksectiontype{appendix}{\@appendix@modetrue}{}%
+    \checksectiontype{answers}{\@answers@modetrue}{}%
+    \checksectiontype{toc}{\@toc@modetrue}{}%
+    \checksectiontype{intro}{\@intro@modetrue}{}%
+    \checksectiontype{bibliography}{\@bibliography@modetrue}{}%
+}
+
+% Переопределяем команду установки типа с обновлением флагов
+\renewcommand{\setsectiontype}[1]{%
+    \def\@current@sectiontype{#1}%
+    \@update@legacy@flags
+}
 
 %===============================================================================
 % РОЗДІЛИ (CHAPTER)
@@ -422,6 +493,7 @@
 \newcommand{\@chapnum@dot}{.}
 \newlength\chapnumb
 \setlength\chapnumb{4cm}
+
 \titleformat{\chapter}[block]
 {\normalfont\sffamily}{}{0pt}
 {\parbox[b]{\chapnumb}{%
@@ -442,61 +514,48 @@
   \markboth{#1}{#1}%
 }
 
-
 %===============================================================================
 % СЕКЦІЇ (SECTION)
 %===============================================================================
 
-\edef\@sectiontitlemark{\S}
+% Получение маркера секции в зависимости от типа
+\newcommand{\@get@section@marker}{%
+    \checksectiontype{appendix}{\appendixname}{%
+    \checksectiontype{answers}{\@answers@marker@text}{%
+    \S}}%
+}
+
 \def\@spase{0.5em}
 
-\titleformat{\section}
-    {\normalfont\sffamily\bfseries\normalsize}
-    {} % прибираємо стандартний номер
-    {0pt} % відступ між номером та заголовком
-    {% код для створення заголовка
-        \settowidth{\length@titlemark}{\@sectiontitlemark\hspace{\@spase}\thesection}%
-        \begin{tikzpicture}[overlay,every node/.style={signal, draw, text=white, signal to=nowhere}]
-            \node[baseline,themecolordark,fill, signal to=east, inner sep=0.25em, drop shadow,
-                text=white,font=\bfseries\normalfont,anchor=west,
-                xshift=-2cm, yshift=1ex]
-                at (0,0) {\color{white}\@sectiontitlemark\hspace{\@spase}\thesection.};
-        \end{tikzpicture}%
-        \hspace*{\dimexpr\length@titlemark-1cm\relax}%
-        \parbox{\dimexpr\linewidth-1cm\relax}{#1}%
-    }
-    [] % код після заголовка
+\let\oldsection\section
+% --- разделяем звёздочную и обычную версию
+\renewcommand{\section}{\@ifstar\@ssection\@nsection}
 
-% Налаштування відступів для нумерованих секцій
-\titlespacing{\section}
-    {0pt} % лівий відступ
-    {10pt} % відступ зверху
-    {10pt} % відступ знизу
-
-% Ненумеровані секції (зірочка)
-\titleformat{name=\section,numberless}
-    {\normalfont\sffamily\large\bfseries}
-    {} % номер відсутній
-    {0pt} % відступ
-    {#1} % просто текст заголовка
-    [] % код після заголовка
-
-% Налаштування відступів для ненумерованих секцій
-\titlespacing{name=\section,numberless}
-    {0pt} % лівий відступ
-    {10pt} % відступ зверху
-    {10pt} % відступ знизу
+% нумерована секція
+\newcommand{\@nsection}[1]{%
+    \refstepcounter{section}%
+    \settowidth{\@tempdima}{\@get@section@marker~\thesection}%
+    \addcontentsline{toc}{section}{\@get@section@marker~\thesection.~#1}%
+    \sectionmark{#1}%
+	\vspace*{10\p@}%
+	{\parindent \z@ \raggedright%
+	\bfseries\large\@get@section@marker~\thesection.\ #1
+		\par\nopagebreak
+		%\vskip-1.75ex{\hskip-2cm\color{gray!60}\rule{\textwidth + 2cm}{2pt}}\nobreak
+		\vskip 10\p@\nopagebreak
+	}}
 
 
-%-------------------------------------------------------------------------------
-% Налаштування для секцій у змісті
-%-------------------------------------------------------------------------------
-
-\newlength\@sectoctitle@len
-\newlength\@chaptoclabel@len\settowidth\@chaptoclabel@len{\@chapapp}
-\newlength\@sectiontitlemark@box\settowidth\@sectiontitlemark@box{\@sectiontitlemark}
-\advance\@chaptoclabel@len by -\@sectiontitlemark@box
-
+% звёздочная (ненумерованная)
+\newcommand{\@ssection}[1]{%
+    \sectionmark{#1}%
+	\vspace*{10\p@}%
+	{\parindent \z@ \raggedright
+		\normalfont
+		\interlinepenalty\@M
+		\sffamily\large\bfseries  #1\par\nopagebreak
+		\vskip 10\p@
+	}}
 
 %===============================================================================
 % ПІДСЕКЦІЇ
@@ -504,31 +563,28 @@
 
 % Нумеровані підсекції
 \titleformat{\subsection}
-    {\normalfont\normalsize\bfseries} % стиль шрифта
-    {\thesubsection} % номер підсекції
-    {0.5em} % відступ між номером та заголовком
-    {#1} % ДОДАЛИ ТЕКСТ ЗАГОЛОВКА!
-    [] % код після заголовка
+    {\normalfont\normalsize\bfseries}
+    {\thesubsection}
+    {0.25em}
+    {#1}
+    []
 
 % Ненумеровані підсекції (subsection*)
 \titleformat{name=\subsection,numberless}
-    {\normalfont\normalsize\bfseries} % стиль шрифта
-    {} % номер відсутній
-    {0pt} % відступ
-    {#1} % ДОДАЛИ ТЕКСТ ЗАГОЛОВКА!
-    [] % код після заголовка
-
-
+    {\normalfont\normalsize\bfseries\itshape}
+    {}
+    {0pt}
+    {#1}
+    []
 
 \let\cleardoublepage\clearpage
-
 
 %===============================================================================
 % ДОДАТКИ
 %===============================================================================
 
 \renewcommand\appendix{\par
-    \appendixtrue
+    \setsectiontype{appendix}%
     \gdef\thesection{\@Alph\c@section}
     \@addtoreset{table}{section}
     \renewcommand\thetable{\thesection.\@arabic\c@table}
@@ -536,20 +592,16 @@
     \setcounter{section}{0}%
     \renewcommand{\theequation}{\thesection.\arabic{equation}}
     \clearpage\pagestyle{main}
-    \edef\@sectiontitlemark{\appendixname}
     \if@twocolumn
         \@restonecoltrue\onecolumn
     \else
         \@restonecolfalse
     \fi
-    % Используем команду chapter с правильными метками
     \@ifundefined{chapter}{%
-        % Если нет команды chapter, используем section
         \section*{Додатки}%
         \markboth{Додатки}{Додатки}%
         \addcontentsline{toc}{section}{Додатки}%
     }{%
-        % Если есть команда chapter
         \chapter*{Додатки}%
         \markboth{Додатки}{Додатки}%
         \addcontentsline{toc}{chapter}{Додатки}%
@@ -562,24 +614,21 @@
 %===============================================================================
 
 \newcommand\answers{\par
-    \answerstrue
+    \setsectiontype{answers}%
     \setcounter{chapter}{0}%
     \setcounter{section}{0}%
     \renewcommand{\thesection}{\arabic{section}}
-    \edef\@sectiontitlemark{Відповіді до розділу}
+    \renewcommand{\theequation}{\thesection.\arabic{equation}}
     \if@twocolumn
         \@restonecoltrue\onecolumn
     \else
         \@restonecolfalse
     \fi
-    % Используем команду chapter с правильными метками
     \@ifundefined{chapter}{%
-        % Если нет команды chapter, используем section
         \section*{Відповіді}%
         \markboth{Відповіді}{Відповіді}%
         \addcontentsline{toc}{section}{Відповіді}%
     }{%
-        % Если есть команда chapter
         \chapter*{Відповіді}%
         \markboth{Відповіді}{Відповіді}%
         \addcontentsline{toc}{chapter}{Відповіді}%
@@ -587,26 +636,24 @@
     \if@restonecol\twocolumn\fi
 }
 
-
-% Лічильник знооок починається з кожної сторінки
+% Лічільник сносок починається з кожної сторінки
 \@newctr{footnote}[page]
 
 %===============================================================================
 % ЗМІСТ
 %===============================================================================
 
-% Переозначення команди змісту
 \renewcommand\tableofcontents{%
+    \setsectiontype{toc}%
     \if@twocolumn
         \@restonecoltrue\onecolumn
     \else
         \@restonecolfalse
     \fi
-    \toctrue
     \chapter*{\contentsname}\hypertarget{tocpage}{}%
     \@starttoc{toc}%
     \if@restonecol\twocolumn\fi
-    \tocfalse
+    \setsectiontype{normal}% возвращаем к нормальному типу
 }
 
 %===============================================================================
@@ -634,82 +681,59 @@
     }
 }
 
+%===============================================================================
+% ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ КОЛОНТИТУЛОВ
+%===============================================================================
 
+% Получение левого маркера (для четных страниц)
+\newcommand{\@get@leftmark@content}[1]{%
+    \ifnum \c@secnumdepth >\m@ne
+        \if@mainmatter%
+            \checksectiontype{normal}{%
+                \@safehyperlink{}{\@chapapp\ \thechapter\@chapnum@dot} \ %
+            }{}%
+        \fi
+    \fi
+    #1%
+}
+
+% Получение правого маркера (для нечетных страниц)
+\newcommand{\@get@rightmark@content}[1]{%
+    \checksectiontype{toc}{\contentsname}{%
+    \checksectiontype{bibliography}{\bibname}{%
+    \checksectiontype{answers}{\answersto~#1}{%
+        \ifnum \c@secnumdepth >\z@
+            \@safehyperlink{}{\@get@section@marker~\thesection.}\ #1%
+        \fi
+    }}}%
+}
+
+% Единообразное оформление колонтитулов
+\newcommand{\@make@header@box}[1]{%
+    \raisebox{0pt}[\headheight][0pt]{%
+        \vbox{\hbox to\textwidth{\strut\small{\hfil\small#1\hfil}}\hrule}%
+    }%
+}
+
+\newcommand{\@make@footer@box}[1]{%
+    \raisebox{0pt}[\headheight][0pt]{%
+        \vbox{\hbox to\textwidth{\strut\small{\hfil\small#1\hfil}}}%
+    }%
+}
 
 % -------------------------
 % Стиль страниц для основного текста
 % -------------------------
 
 \def\ps@main{%
-    \def\chaptermark##1{
-        \markboth{%
-            \ifnum \c@secnumdepth >\m@ne
-                \if@mainmatter%
-                    \ifappendix\relax
-                    \else
-                        \iftoc\relax
-                        \else
-                            \ifanswers\relax
-                            \else
-                                \protect\hyperlink{\@currentHref}{\@chapapp\ \thechapter\@chapnum@dot} \ %
-                            \fi
-                        \fi
-                    \fi
-                \fi
-            \fi
-            ##1}{%
-                \iftoc\contentsname\fi%
-                \ifintro##1\fi%
-            }%
-    }%
+    \def\chaptermark##1{\markboth{\@get@leftmark@content{##1}}{##1}}%
+    \def\sectionmark##1{\markright{\@get@rightmark@content{##1}}}%
 
-    \def\sectionmark##1{%
-        \markright{%
-            \ifnum \c@secnumdepth >\z@
-                \ifbibliography
-                    \bibname
-                \else
-                    \protect\hyperlink{\@currentHref}{%
-                        \ifappendix
-                            \appendixname~\thesection.
-                        \else
-                            \@sectiontitlemark~\thesection.
-                        \fi
-                    }\ ##1
-                \fi
-            \fi
-        }
-    }
-
-    % Верхні колонтитули
-    \renewcommand{\@oddhead}{%
-        \raisebox{0pt}[\headheight][0pt]{%
-            \vbox{\hbox to\textwidth{\strut
-                \small{\hfil\small\leftmark\hfil}}\hrule}
-        }%
-    }
-
-    \renewcommand{\@evenhead}{%
-        \raisebox{0pt}[\headheight][0pt]{%
-            \vbox{\hbox to\textwidth{\strut
-                \small{\hfil{\small\rightmark}\hfil}}\hrule}
-        }%
-    }
-
-    % Нижні колонтитули
-    \renewcommand{\@oddfoot}{%
-        \raisebox{0pt}[\headheight][0pt]{%
-            \vbox{\hbox to\textwidth{\strut
-                \small{\hfil\small\hyperlink{tocpage}{\thepage}}\hfil}}
-        }%
-    }
-
-    \renewcommand{\@evenfoot}{%
-        \raisebox{0pt}[\headheight][0pt]{%
-            \vbox{\hbox to\textwidth{\strut
-                \small{\hfil{\small\hyperlink{tocpage}{\thepage}}\hfil}}}
-        }%
-    }
+    % Колонтитули
+    \renewcommand{\@oddhead}{\@make@header@box{\leftmark}}%
+    \renewcommand{\@evenhead}{\@make@header@box{\rightmark}}%
+    \renewcommand{\@oddfoot}{\@make@footer@box{\hyperlink{tocpage}{\thepage}}}%
+    \renewcommand{\@evenfoot}{\@make@footer@box{\hyperlink{tocpage}{\thepage}}}%
 }
 
 
